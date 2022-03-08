@@ -1,0 +1,18 @@
+
+[	java:S112P"FDefine and throw a dedicated exception instead of using a generic one.(Šñ–Ó
+[	java:S112w"FDefine and throw a dedicated exception instead of using a generic one.(µµƒÆ
+o
+java:S1989!"YHandle the following exception that could be thrown by "parseInt": NumberFormatException.(ö‰½à
+|
+java:S1989&"aHandle the following exceptions that could be thrown by "forward": ServletException, IOException.(ÜÕˆêøÿÿÿÿ
+A
+java:S1075J"&Remove this hard-coded path-delimiter.(§Ì³µýÿÿÿÿ
+n
+java:S1989]"SHandle the following exception that could be thrown by "sendRedirect": IOException.(à•ªâùÿÿÿÿ
+|
+java:S1989b"aHandle the following exceptions that could be thrown by "forward": ServletException, IOException.(ÜÕˆêøÿÿÿÿ
+n
+java:S2226"XRemove this misleading mutable servlet instance field or make it "static" and/or "final"(þ»ÖÍ
+P
+java:S1141M"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(é¡¨Ðÿÿÿÿÿ

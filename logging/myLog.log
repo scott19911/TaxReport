@@ -1,0 +1,4 @@
+2022-03-07 23:10:25 INFO  RegisterServlet:57 - Register user role indi
+2022-03-07 23:10:25 INFO  LoginServlet:57 - User successes log in id = 9 and hes role = adm
+2022-03-07 23:10:25 WARN  Inspections:39 - Attempt to change the status of a non-existent report
+2022-03-07 23:10:26 INFO  ReportServlet:89 - Insert report file = uploadDir/32022-03-07231026/file1.xml
