@@ -8,6 +8,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -28,20 +29,20 @@
     <nav class="navbar navbar-expand-md navbar-dark"
          style="background-color: blue">
         <div>
-            <a href="/" class="navbar-brand"> Tax Report </a>
+            <a href="/" class="navbar-brand"><fmt:message key="taxReport"/></a>
         </div>
         <ul class="navbar-nav">
             <li><a href="<%=request.getContextPath()%>/regInsp.jsp"
-                   class="nav-link">Create inspector</a></li>
+                   class="nav-link"><fmt:message key="createIns"/></a></li>
         </ul>
         <ul class="navbar-nav">
             <li><a href="<%=request.getContextPath()%>/listIns"
-                   class="nav-link">Show inspector</a></li>
+                   class="nav-link"><fmt:message key="showIns"/></a></li>
         </ul>
 
         <ul class="navbar-nav">
             <li><a href="<%=request.getContextPath()%>/logOff"
-                   class="nav-link">logOff</a></li>
+                   class="nav-link"><fmt:message key="logOff"/></a></li>
         </ul>
     </nav>
 </header>
@@ -53,19 +54,19 @@
 <div class="container">
     <section id="content">
         <form name="form" action="/editIns" method="post"  onsubmit="return validate()">
-            <h1>Edit inspector</h1>
+            <h1><fmt:message key="editIns"/></h1>
             <div>
-                <input type="text" placeholder="First Name" required="" name="fName" />
+                <input type="text" placeholder="<fmt:message key="fName"/>" required="" name="fName" />
             </div>
 
             <div>
-                <input type="text" placeholder="Last name"required="" name="lName" />
+                <input type="text" placeholder="<fmt:message key="lName"/>" required="" name="lName" />
             </div>
 
             <div> <%=(request.getAttribute("errMessage") == null) ? ""
                     : request.getAttribute("errMessage")%></div>
             <div>
-                <input type="submit" value="Save" />
+                <input type="submit" value="<fmt:message key="save"/>" />
 
             </div>
         </form><!-- form -->

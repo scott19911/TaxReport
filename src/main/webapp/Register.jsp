@@ -6,10 +6,11 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Tax Report</title>
+  <title><fmt:message key="taxReport"/></title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!--===============================================================================================-->
@@ -46,18 +47,18 @@
 
       if (login==null || login.length == 0)
       {
-        alert("Login can't be blank");
+        alert("<fmt:message key="blank"/>");
         return false;
       }
 
       else if(password.length<6)
       {
-        alert("Password must be at least 6 characters long.");
+        alert("<fmt:message key="pass6"/>");
         return false;
       }
       else if (password!=conpassword)
       {
-        alert("Confirm Password should match with the Password");
+        alert("<fmt:message key="conpass"/>");
         return false;
       }
     }
@@ -69,21 +70,21 @@
   <div class="container-login100" style="background-image: url('Login_v16/images/bg-01.jpg');">
     <div class="wrap-login100 p-t-30 p-b-50">
 				<span class="login100-form-title p-b-41">
-					Create account
+					<fmt:message key="Createaccount"/>
 				</span>
       <form class="login100-form validate-form p-b-33 p-t-5"action="RegisterServlet" method="post" onsubmit="return validate()">
 
-        <div class="wrap-input100 validate-input" data-validate = "Enter username">
-          <input class="input100" type="text" name="login" placeholder="User name">
+        <div class="wrap-input100 validate-input" data-validate = "<fmt:message key="Enterusername"/>">
+          <input class="input100" type="text" name="login" placeholder="<fmt:message key="Username"/>">
           <span class="focus-input100" data-placeholder="&#xe82a;"></span>
         </div>
 
-        <div class="wrap-input100 validate-input" data-validate="Enter password">
-          <input class="input100" type="password" name="password" placeholder="Password">
+        <div class="wrap-input100 validate-input" data-validate="<fmt:message key="Enterpassword"/>">
+          <input class="input100" type="password" name="password" placeholder="<fmt:message key="pas"/>">
           <span class="focus-input100" data-placeholder="&#xe80f;"></span>
         </div>
-        <div class="wrap-input100 validate-input" data-validate="Enter password">
-          <input class="input100" type="password" name="conpassword" placeholder="Confirm Password">
+        <div class="wrap-input100 validate-input" data-validate="<fmt:message key="Enterpassword"/>">
+          <input class="input100" type="password" name="conpassword" placeholder="<fmt:message key="confirmPassword"/>">
           <span class="focus-input100" data-placeholder="&#xe80f;"></span>
         </div>
         <div><span style="color:red"><%=(request.getAttribute("errMessage") == null) ? ""
@@ -94,16 +95,16 @@
         <div class="form_toggle">
           <div class="form_toggle-item item-1">
             <input id="fid-1" type="radio" name="role" value="indi" checked>
-            <label for="fid-1">Физ. лицо</label>
+            <label for="fid-1"><fmt:message key="individual"/></label>
           </div>
           <div class="form_toggle-item item-2">
             <input id="fid-2" type="radio" name="role" value="entyti">
-            <label for="fid-2">Юр. лицо</label>
+            <label for="fid-2"><fmt:message key="entyti"/></label>
           </div>
         </div>
         <div class="container-login100-form-btn m-t-32">
           <button class="login100-form-btn">
-            Registration
+           <fmt:message key="Registration"/>
           </button>
         </div>
 

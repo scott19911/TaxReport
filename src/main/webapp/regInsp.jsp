@@ -8,6 +8,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -27,18 +28,18 @@
 
             if (login==null || login.length == 0)
             {
-                alert("Login can't be blank");
+                alert("<fmt:message key="blank"/>");
                 return false;
             }
 
             else if(password.length<6)
             {
-                alert("Password must be at least 6 characters long.");
+                alert("<fmt:message key="pass6"/>");
                 return false;
             }
             else if (password!=conpassword)
             {
-                alert("Confirm Password should match with the Password");
+                alert("<fmt:message key="conpass"/>");
                 return false;
             }
         }
@@ -50,23 +51,23 @@
 <div class="container">
     <section id="content">
         <form name="form" action="/regIns" method="post"  onsubmit="return validate()">
-            <h1>Create inspector</h1>
+            <h1><fmt:message key="createIns"/></h1>
             <div>
-                <input type="text" placeholder="First Name" required="" name="fName" />
+                <input type="text" placeholder="<fmt:message key="fName"/>" required="" name="fName" />
             </div>
 
             <div>
-                <input type="text" placeholder="Last name"required="" name="lName" />
+                <input type="text" placeholder="<fmt:message key="lName"/>" required="" name="lName" />
             </div>
 
-            <div><input type="text" placeholder="Login" required="" name="login" /></div>
-            <div><input type="password" placeholder="New password" required="" name="password" /> </div>
-            <div><input type="password" placeholder="Confirm Password" required="" name="conpassword" /> </div>
+            <div><input type="text" placeholder="<fmt:message key="login"/>" required="" name="login" /></div>
+            <div><input type="password" placeholder="<fmt:message key="newPassword"/>" required="" name="password" /> </div>
+            <div><input type="password" placeholder="<fmt:message key="confirmPassword"/>" required="" name="conpassword" /> </div>
 
             <div> <%=(request.getAttribute("errMessage") == null) ? ""
                     : request.getAttribute("errMessage")%></div>
             <div>
-                <input type="submit" value="Save" />
+                <input type="submit" value="<fmt:message key="save"/>" />
 
             </div>
         </form><!-- form -->

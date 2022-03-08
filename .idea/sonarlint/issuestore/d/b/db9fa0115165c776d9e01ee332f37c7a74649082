@@ -1,12 +1,8 @@
 
-S
-java:S1854"=Remove this useless assignment to local variable "sqlInsert".(›­‡€
-D
-java:S1481".Remove this unused "sqlInsert" local variable.(›­‡€
 S	java:S106"9Replace this use of System.out or System.err by a logger.(ÀîÑ¼úÿÿÿÿ
 N	java:S106"9Replace this use of System.out or System.err by a logger.(¨Ô…‹
 g	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(Ú´Ñıÿÿÿÿ
-b
-java:S2095"GUse try-with-resources or close this "Statement" in a "finally" clause.(é°Áµşÿÿÿÿ
 c
-java:S2095"HUse try-with-resources or close this "Connection" in a "finally" clause.( Ì†·úÿÿÿÿ
+java:S2095"HUse try-with-resources or close this "Connection" in a "finally" clause.(•³óãúÿÿÿÿ
+b
+java:S2095"GUse try-with-resources or close this "Statement" in a "finally" clause.(é°Áµşÿÿÿÿ

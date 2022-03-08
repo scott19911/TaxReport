@@ -8,11 +8,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
              pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>User profile</title>
+    <title><fmt:message key="account"/></title>
     <link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -52,17 +53,17 @@
     <nav class="navbar navbar-expand-md navbar-dark"
          style="background-color: blue">
         <div>
-            <a href="/" class="navbar-brand"> Tax Report </a>
+            <a href="/" class="navbar-brand"><fmt:message key="taxReport"/></a>
         </div>
         <c:if test='${act.equals("edit")}'>
             <ul class="navbar-nav">
                 <li><a href="<%=request.getContextPath()%>/UploadReport"
-                       class="nav-link">Create Reports</a></li>
+                       class="nav-link"><fmt:message key="createReports"/></a></li>
             </ul>
         </c:if>
         <ul class="navbar-nav">
             <li><a href="<%=request.getContextPath()%>/logOff"
-                   class="nav-link">logOff</a></li>
+                   class="nav-link"><fmt:message key="logOff"/></a></li>
         </ul>
     </nav>
 </header>
@@ -71,22 +72,22 @@
 <div class="container">
     <section id="content">
         <form name="form" action="/editEntyti" method="post"  onsubmit="return validate()">
-            <h1>User info</h1>
+            <h1><fmt:message key="userinfo"/></h1>
             <div>
-                <input type="text" placeholder="Company name" <c:if test='${act.equals("insert")}'>required=""</c:if> name="company" />
+                <input type="text" placeholder="<fmt:message key="companyname"/>" <c:if test='${act.equals("insert")}'>required=""</c:if> name="company" />
             </div>
             <div>
-                <input <c:if test='${act.equals("insert")}'>required=""</c:if> oninput="this.value=this.value.slice(0,this.maxLength)"  maxlength="12" placeholder="OKPO code" type="number" name="okpo" />
+                <input <c:if test='${act.equals("insert")}'>required=""</c:if> oninput="this.value=this.value.slice(0,this.maxLength)"  maxlength="12" placeholder="<fmt:message key="OKPOcode"/>" type="number" name="okpo" />
             </div>
             <c:if test='${act.equals("edit")}'>
-                <div><input type="password" placeholder="New password" name="password" /> </div>
-                <div><input type="password" placeholder="Confirm Password" name="conpassword" /> </div>
+                <div><input type="password" placeholder="<fmt:message key="newPassword"/>" name="password" /> </div>
+                <div><input type="password" placeholder="<fmt:message key="confirmPassword"/>" name="conpassword" /> </div>
                 </tr>
             </c:if>
             <div> <%=(request.getAttribute("errMessage") == null) ? ""
                     : request.getAttribute("errMessage")%></div>
             <div>
-                <input type="submit" value="Save" />
+                <input type="submit" value="<fmt:message key="save"/>" />
 
             </div>
         </form><!-- form -->

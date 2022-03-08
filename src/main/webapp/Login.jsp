@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,12 +50,12 @@
 
       if (username==null || username=="")
       {
-        alert("Username cannot be blank");
+        alert("<fmt:message key="blank"/>");
         return false;
       }
       else if(password==null || password=="")
       {
-        alert("Password cannot be blank");
+        alert("<fmt:message key="Pblank"/>");
         return false;
       }
     }
@@ -66,17 +67,17 @@
   <div class="container-login100" style="background-image: url('/Login_v16/images/bg-01.jpg');">
     <div class="wrap-login100 p-t-30 p-b-50">
 				<span class="login100-form-title p-b-41">
-					Account Login
+					<fmt:message key="AccountLogin"/>
 				</span>
       <form class="login100-form validate-form p-b-33 p-t-5" action="${pageContext.request.contextPath}/login" method="post" onsubmit="return validate()">
 
-        <div class="wrap-input100 validate-input" data-validate = "Enter username">
-          <input class="input100" type="text" name="username" placeholder="User name">
+        <div class="wrap-input100 validate-input" data-validate = "<fmt:message key="Enterusername"/>">
+          <input class="input100" type="text" name="username" placeholder="<fmt:message key="Username"/>">
           <span class="focus-input100" data-placeholder="&#xe82a;"></span>
         </div>
 
-        <div class="wrap-input100 validate-input" data-validate="Enter password">
-          <input class="input100" type="password" name="password" placeholder="Password">
+        <div class="wrap-input100 validate-input" data-validate="<fmt:message key="Enterpassword"/>">
+          <input class="input100" type="password" name="password" placeholder="<fmt:message key="pas"/>">
           <span class="focus-input100" data-placeholder="&#xe80f;"></span>
         </div>
         <div><span style="color:red"><%=(request.getAttribute("errMessage") == null) ? ""
@@ -89,7 +90,7 @@
 
           <button class="login100-form-btn">
             <li><a href="<%=request.getContextPath()%>/Register.jsp"
-                   class="nav-link" style="color: white">Registration</a></li>
+                   class="nav-link" style="color: white"><fmt:message key="Registration"/></a></li>
           </button>
         </div>
 

@@ -14,19 +14,19 @@
     <nav class="navbar navbar-expand-md navbar-dark"
          style="background-color: blue">
         <div>
-            <a href="/" class="navbar-brand"> Tax Report </a>
+            <a href="/" class="navbar-brand"><fmt:message key="taxReport"/></a>
         </div>
             <ul class="navbar-nav">
                 <li><a href="<%=request.getContextPath()%>/regInsp.jsp"
-                       class="nav-link">Create User</a></li>
+                       class="nav-link"><fmt:message key="CreateUser"/></a></li>
             </ul>
 
         <ul class="navbar-nav">
             <li><a href="<%=request.getContextPath()%>/logOff"
-                   class="nav-link">logOff</a></li>
+                   class="nav-link"><fmt:message key="logOff"/></a></li>
         </ul>
     </nav>
-    <title>All Inspectors</title>
+    <title><fmt:message key="AllInspectors"/></title>
     <style>
 
         <%@include file='css/table.css' %>
@@ -43,10 +43,10 @@
 <table class="table table-bordered" id="insTable" align="center">
     <thead>
     <tr>
-        <th data-type="number">ID</th>
-        <th>First name</th>
-        <th>Last name</th>
-        <th>ToDo</th>
+        <th data-type="number"><fmt:message key="id"/></th>
+        <th><fmt:message key="fName"/></th>
+        <th><fmt:message key="lName"/></th>
+        <th><fmt:message key="TODO"/></th>
     </tr>
     </thead>
     <tbody class="table2">
@@ -61,7 +61,7 @@
 
             <form action="/listIns" method="post">
                 <input type="hidden" name="id" value="${ins.userId}">
-                <input type="submit" value="Delete">
+                <input type="submit" value="<fmt:message key="delete"/>">
             </form>
 
         </td>
