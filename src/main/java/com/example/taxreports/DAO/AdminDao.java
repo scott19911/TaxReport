@@ -11,6 +11,7 @@ import java.util.List;
 
 import static com.example.taxreports.Queris.*;
 
+
 public class AdminDao {
 
     private static final Logger log = Logger.getLogger(AdminDao.class);

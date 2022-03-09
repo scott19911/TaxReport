@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 
 @WebFilter("/*")
@@ -28,6 +29,7 @@ public class SecurityFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) resp;
         request.setCharacterEncoding("UTF-8");
+
         response.setCharacterEncoding("UTF-8");
         String servletPath = request.getServletPath();
 

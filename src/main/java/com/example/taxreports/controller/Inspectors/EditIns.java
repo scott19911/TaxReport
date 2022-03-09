@@ -17,7 +17,7 @@ public class EditIns extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        System.out.println(req.getCharacterEncoding());
         String fName = req.getParameter("fName");
         String lName = req.getParameter("lName");
         AdminDao adminDao = new AdminDao();
