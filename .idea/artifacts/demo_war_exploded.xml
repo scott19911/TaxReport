@@ -14,6 +14,25 @@
           <element id="module-output" name="demo" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: com.heroku:webapp-runner:9.0.52.1" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat.embed:tomcat-embed-core:9.0.52" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-annotations-api:9.0.52" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat.embed:tomcat-embed-logging-juli:9.0.0.M6" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat.embed:tomcat-embed-jasper:9.0.52" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat.embed:tomcat-embed-el:9.0.52" />
+          <element id="library" level="project" name="Maven: org.eclipse.jdt:ecj:3.18.0" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-jasper:9.0.52" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-servlet-api:9.0.52" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-juli:9.0.52" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-el-api:9.0.52" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-api:9.0.52" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-util-scan:9.0.52" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-util:9.0.52" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-jasper-el:9.0.52" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-jsp-api:9.0.52" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat.embed:tomcat-embed-websocket:9.0.52" />
+          <element id="library" level="project" name="Maven: com.beust:jcommander:1.72" />
+          <element id="library" level="project" name="Maven: commons-io:commons-io:2.6" />
           <element id="library" level="project" name="Maven: org.mockito:mockito-inline:4.0.0" />
           <element id="library" level="project" name="Maven: org.mockito:mockito-core:4.0.0" />
           <element id="library" level="project" name="Maven: net.bytebuddy:byte-buddy:1.11.19" />
