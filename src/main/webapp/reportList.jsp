@@ -171,7 +171,7 @@
 
           <td>${repo.comments}</td>
 
-          <td><a href="/${repo.filePath}"><fmt:message key="open"/></a>
+          <td><a href="/download?filePath=${repo.filePath}&open=1"><fmt:message key="open"/></a>
             <a href="/download?filePath=${repo.filePath}"><fmt:message key="download"/></a>
             <c:if test='${!user.getRole().equals("insp")}'>
             <c:if test="${repo.status == 1}"><br>

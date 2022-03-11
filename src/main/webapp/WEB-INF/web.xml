@@ -60,4 +60,18 @@
         <param-name>locales</param-name>
         <param-value>/locales.properties</param-value>
     </context-param>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/META-INF/context.xml
+        </param-value>
+    </context-param>
+
+    <resource-ref>
+        <description>DB Connection</description>
+        <res-ref-name>jdbc/mydatabase</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+        <jndi-name>java:/DefaultDS</jndi-name>
+    </resource-ref>
+
 </web-app>

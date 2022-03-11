@@ -1,15 +1,18 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<Context>
+<Context  docBase="webapps/demo-1.0-SNAPSHOT.war"
+          reloadable="true" crossContext="true">
     <!-- Specify a JDBC datasource -->
+    <WatchedResource>WEB-INF/web.xml</WatchedResource>
+
     <Resource name="jdbc/mydatabase"
     auth="Container"
     type="javax.sql.DataSource"
     username="ba9738ac294968"
+    factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
     password="9cc5f54b"
     driverClassName="com.mysql.cj.jdbc.Driver"
-    url="jdbc:mysql://eu-cdbr-west-02.cleardb.net:3306/heroku_19659c467785491?autoReconnect=true"
+    url="jdbc:mysql://eu-cdbr-west-02.cleardb.net:3306/heroku_19659c467785491?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf-8"
     validationQuery="select 1"
     maxTotal="8"
     maxIdle="4"/>
-
 </Context>

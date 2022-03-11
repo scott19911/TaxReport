@@ -2,6 +2,7 @@ package com.example.taxreports.controller.Reports;
 
 import com.example.taxreports.DAO.ReportsDAO;
 import com.example.taxreports.bean.UserBean;
+import com.example.taxreports.util.S3Util;
 import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
@@ -12,6 +13,8 @@ import javax.servlet.http.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -51,52 +54,31 @@ public class ReportServlet extends HttpServlet {
         id = user.getId();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-ddHHmmss");
         Date date = new Date();
-        String dt= id+dateFormat.format(date);
+
         String description = request.getParameter("description");
-        String appPath = request.getServletContext().getRealPath("");
-        appPath = appPath.replace('\\', '/');
-        String fullSavePath;
-        if (appPath.endsWith("/")) {
-            fullSavePath = appPath + SAVE_DIRECTORY + FileSystems.getDefault().getSeparator()+ dt;
-        } else {
-            fullSavePath = appPath + FileSystems.getDefault().getSeparator()+ SAVE_DIRECTORY + FileSystems.getDefault().getSeparator() + dt;
-        }
-        fullSavePath = fullSavePath.replace('\\', '/');
-        File fileSaveDir = new File(fullSavePath);
-        if (!fileSaveDir.exists()) {
-            fileSaveDir.mkdir();
-        }
-            //Save the file to the created directory
-            try{
-                Part part = request.getPart("file");
-                    String fileName = extractFileName(part);
-                    if (fileName != null && fileName.length() > 0) {
-                        String filePath = fullSavePath + "/"+ fileName;
-                        String fileDir = filePath.substring(filePath.indexOf(SAVE_DIRECTORY)) ;
 
-                        try {
-                            part.write(filePath);
-                        } catch (Exception e){
-                          throw new RuntimeException("not load file");
-                        }
+        String fileDir = id + "/" + dateFormat.format(date) + "/";
 
-                        // file change
-                        if(changeId > 0){
-                            repo.editReport(changeId,fileDir);
-                            log.info("Update report file = " + fileDir);
-                        }else {
-                        repo.writeToDB(fileDir,id,description);
-                            log.info("Insert report file = " + fileDir);}
-                }
-
-            // Upload successfully!.
+        try {
+            Part filePart = request.getPart("file");
+            String fileName = extractFileName(filePart);
+            String fullDir = fileDir + fileName;
+            if(changeId > 0){
+                repo.editReport(changeId,fullDir);
+                log.info("Update report file = " + fullDir);
+            }else {
+                repo.writeToDB(fullDir,id,description);
+                log.info("Insert report file = " + fullDir);}
+            S3Util.uploadFile(fullDir, filePart.getInputStream());
             response.sendRedirect(request.getContextPath() + "/reportList");
-        } catch (Exception e) {
-            log.error("Cannot load file", e);
-            request.setAttribute("errorMessage", "Error: " + e.getMessage());
+        } catch (Exception ex) {
+            log.error("Cannot load file " + ex);
+            request.setAttribute("errorMessage", "Error: " + fileDir + ex);
             RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/UploadReport.jsp");
             dispatcher.forward(request, response);
         }
+
+
     }
 
     private String extractFileName(Part part) {
