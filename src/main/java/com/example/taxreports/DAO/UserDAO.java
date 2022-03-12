@@ -161,4 +161,33 @@ public class UserDAO {
         }
         return id;
     }
+    public  String getLocaleById (int id){
+        String locale = null;
+        try (Connection con= ConnectionPool.getInstance().getConnection();
+             PreparedStatement stm = con.prepareStatement(SELECT_LOCALE_USER_BY_ID)){
+            stm.setInt(1,id);
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()){
+                locale = rs.getString(TableColums.LOCALE);
+            }
+
+        } catch (SQLException e) {
+            log.error(e);
+            throw new RuntimeException("Sorry user missing");
+        }
+        return locale;
+    }
+    public void setLocaleById (int id, String locale){
+        
+        try (Connection con= ConnectionPool.getInstance().getConnection();
+             PreparedStatement stm = con.prepareStatement(UPDATE_LOCALE_USER_BY_ID)){
+            stm.setString(1,locale);
+            stm.setInt(2,id);
+            stm.executeUpdate();
+        } catch (SQLException e) {
+            log.error(e);
+            throw new RuntimeException("Sorry user missing");
+        }
+
+    }
 }

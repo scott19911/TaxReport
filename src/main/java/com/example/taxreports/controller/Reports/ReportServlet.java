@@ -64,6 +64,7 @@ public class ReportServlet extends HttpServlet {
             String fileName = extractFileName(filePart);
             String fullDir = fileDir + fileName;
             if(changeId > 0){
+                S3Util.deleteFile(repo.getPath(changeId));
                 repo.editReport(changeId,fullDir);
                 log.info("Update report file = " + fullDir);
             }else {

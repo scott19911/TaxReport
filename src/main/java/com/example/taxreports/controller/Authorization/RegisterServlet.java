@@ -52,6 +52,7 @@ public class RegisterServlet extends HttpServlet {
 
         //depending on the role, go to the start pages
         if(userRegistered > 0) {
+            userDAO.setLocaleById(userRegistered, (String) request.getSession().getAttribute("javax.servlet.jsp.jstl.fmt.locale.session"));
             if(role.equals(SecurityConfig.ROLE_INDIVIDUAL)) {
                 response.sendRedirect("/insertInd?action=insert");
                 log.info("Register user role indi");

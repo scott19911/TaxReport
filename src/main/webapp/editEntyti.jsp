@@ -51,7 +51,7 @@
 <body>
 <header>
     <nav class="navbar navbar-expand-md navbar-dark"
-         style="background-color: blue">
+         style="background-color: #034844">
         <div>
             <a href="/" class="navbar-brand"><fmt:message key="taxReport"/></a>
         </div>

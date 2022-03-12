@@ -29,7 +29,7 @@ public class ContextListener implements ServletContextListener {
     	
     	// save descriptions to servlet context
     	context.setAttribute("locales", locales);
-    	locales.list(System.out);
+
     }
 	
 }

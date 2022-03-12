@@ -50,10 +50,11 @@ public class S3Util {
 	}
 	public static void deleteFile (String object_key){
 
-		final AmazonS3 s3 = AmazonS3ClientBuilder.standard().withRegion(Regions.EU_CENTRAL_1).build();
+		final AmazonS3 s3 = AmazonS3ClientBuilder.standard().withRegion(String.valueOf(Region.EU_CENTRAL_1)).build();
 
 		try {
 			s3.deleteObject(BUCKET, object_key);
+
 			log.info("Delete file = " + object_key);
 
 		} catch (AmazonServiceException e) {

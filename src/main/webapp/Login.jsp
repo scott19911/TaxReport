@@ -7,12 +7,13 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 
 
-  <title>Tax Report</title>
+  <title><fmt:message key="taxReport"/></title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!--===============================================================================================-->
@@ -61,6 +62,7 @@
     }
   </script>
 </head>
+
 <body>
 
 <div class="limiter">
@@ -85,7 +87,7 @@
          </div>
         <div class="container-login100-form-btn m-t-32">
           <button class="login100-form-btn">
-            Login
+           <fmt:message key="login"/>
           </button>
 
           <button class="login100-form-btn">

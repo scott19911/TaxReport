@@ -6,10 +6,47 @@
 <!DOCTYPE >
 <html>
 <head>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
     <title><fmt:message key="comments"/></title>
+    <style>
+        <%@include file='css/style.css' %>
+    </style>
 </head>
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark"
+         style="background-color: #034844">
+        <div>
+            <a href="/" class="navbar-brand"> <fmt:message key="taxReport"/> </a>
+        </div>
+        <c:if test='${!user.getRole().equals("insp")}'>
+            <ul class="navbar-nav">
+                <li><a href="<%=request.getContextPath()%>/UploadReport"
+                       class="nav-link"><fmt:message key="createReports"/></a></li>
+            </ul>
+        </c:if>
+        <ul class="navbar-nav">
+            <li><a href="<%=request.getContextPath()%>/settings.jsp"
+                   class="nav-link"><fmt:message key="language"/></a></li>
+        </ul>
+        <c:if test='${user.getRole().equals("insp")}'>
+            <ul class="navbar-nav">
+                <li><a href="<%=request.getContextPath()%>/changePassword.jsp"
+                       class="nav-link"><fmt:message key="editPassword"/></a></li>
+            </ul>
+        </c:if>
+        <ul class="navbar-nav">
+            <li><a href="<%=request.getContextPath()%>/logOff"
+                   class="nav-link"><fmt:message key="logOff"/></a></li>
+        </ul>
+    </nav>
+</header>
+<br>
 <body>
-
+<div class="container">
+    <section id="content">
 <div style="padding:5px; color:red;font-style:italic;">
     ${errorMessage}
 </div>
@@ -45,6 +82,7 @@
 
 
 </form>
-
+    </section><!-- content -->
+</div><!-- container -->
 </body>
 </html>

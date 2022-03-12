@@ -1,7 +1,9 @@
 package com.example.taxreports.DAO;
 
+import com.example.taxreports.TableColums;
 import com.example.taxreports.bean.ReportBean;
 import com.example.taxreports.util.ConnectionPool;
+import com.example.taxreports.util.S3Util;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
@@ -80,7 +82,7 @@ public class ReportsDAO {
     }
 
     public void deleteRepo(int id, String path) throws IOException {
-        Files.delete(Paths.get(path));
+        S3Util.deleteFile(path);
             if( getReportStatus(id) == ReportBean.STATUS_FILED) {
                 try (Connection con = ConnectionPool.getInstance().getConnection();
                      PreparedStatement stm = con.prepareStatement(DELETE_FROM_REPORT_WHERE_ID)) {
@@ -227,4 +229,22 @@ public class ReportsDAO {
             throw new RuntimeException("Sorry, cannot find inspector.");
         }
     }
+    public String getPath(int id) throws IOException {
+
+            try (Connection con = ConnectionPool.getInstance().getConnection();
+                 PreparedStatement stm = con.prepareStatement(SELECT_FILE_PATH_FROM_REPORT_WHERE_ID)) {
+                stm.setInt(1, id);
+               ResultSet rs = stm.executeQuery();
+               while (rs.next()){
+                   return rs.getString(REPORT_FILE_PATH);
+               }
+
+            } catch (SQLException e) {
+                log.error(e);
+                throw new RuntimeException("Sorry, cannot finde file.");
+
+            }
+            return null;
+        }
+
 }

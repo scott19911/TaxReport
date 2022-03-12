@@ -20,6 +20,9 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
           crossorigin="anonymous">
     <script src="http://code.jquery.com/jquery-2.0.3.min.js" data-semver="2.0.3" data-require="jquery"></script>
+    <style>
+        <%@include file='css/style.css' %>
+    </style>
     <script>
         function validate()
         {
@@ -42,7 +45,7 @@
 <body>
 <header>
     <nav class="navbar navbar-expand-md navbar-dark"
-         style="background-color: blue">
+         style="background-color: #034844">
         <div>
             <a href="/" class="navbar-brand"><fmt:message key="taxReport"/></a>
         </div>

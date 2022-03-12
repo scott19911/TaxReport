@@ -11,13 +11,14 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
-  <title>All Reports</title>
+  <title><fmt:message key="listReports"/></title>
+  <script src="https://code.jquery.com/jquery-2.0.3.min.js" data-semver="2.0.3" data-require="jquery"></script>
   <link rel="stylesheet"
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
         crossorigin="anonymous">
 
-  <script src="http://code.jquery.com/jquery-2.0.3.min.js" data-semver="2.0.3" data-require="jquery"></script>
+
   <link href="//cdnjs.cloudflare.com/ajax/libs/datatables/1.9.4/css/jquery.dataTables_themeroller.css" rel="stylesheet" data-semver="1.9.4" data-require="sortable@*" />
   <link href="//cdnjs.cloudflare.com/ajax/libs/datatables/1.9.4/css/jquery.dataTables.css" rel="stylesheet" data-semver="1.9.4" data-require="sortable@*" />
   <link href="//cdnjs.cloudflare.com/ajax/libs/datatables/1.9.4/css/demo_table_jui.css" rel="stylesheet" data-semver="1.9.4" data-require="sortable@*" />
@@ -27,8 +28,8 @@
   <script data-require="jqueryui@*" data-semver="1.10.0" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.0/jquery-ui.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/datatables/1.9.4/jquery.dataTables.js" data-semver="1.9.4" data-require="sortable@*"></script>
 
-  <script>
-    <%@include file='js/script.js' %>
+  <script language="JavaScript" type="text/javascript">
+    <%@include file='/js/script.js' %>
   </script>
   <style>
     <%@include file='css/check.css' %>
@@ -36,15 +37,13 @@
     <%@include file='css/style.css' %>
   </style>
 
-
-  <script src="js/moment.min.js"></script>
 </head>
 <body>
 
 
 <header>
   <nav class="navbar navbar-expand-md navbar-dark"
-       style="background-color: blue">
+       style="background-color: #034844">
     <div>
       <a href="/" class="navbar-brand"> <fmt:message key="taxReport"/> </a>
     </div>

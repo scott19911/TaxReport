@@ -46,7 +46,9 @@ public class LoginServlet extends HttpServlet {
         String salt=userDAO.getSalByLogin(login);
         registerBean.setSalt(salt);
         registerBean.setLogin(login);
+
         registerBean.setPassword(securityPassword.getHashPassword(password + salt));
+
 
         //Calling authenticateUser function
         UserBean userValidate = userDAO.authenticateUser(registerBean);
@@ -54,6 +56,7 @@ public class LoginServlet extends HttpServlet {
         //upon successful authorization, depending on the role, go to the start pages
         if(userValidate != null) {
             session.setAttribute(USER, userValidate);
+            request.getSession().setAttribute("javax.servlet.jsp.jstl.fmt.locale.session", userDAO.getLocaleById(userValidate.getId()));
             log.info("User successes log in id = " + userValidate.getId() + " and hes role = " + userValidate.getRole());
             if (userValidate.getRole().equals(SecurityConfig.ROLE_ADMIN)) {
                 request.getRequestDispatcher("/listIns").forward(request, response);

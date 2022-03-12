@@ -13,7 +13,7 @@
 <!DOCTYPE >
 <html>
 <head>
-    <title>Upload files</title>
+    <title><fmt:message key="UploadFiles"/></title>
     <link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -26,7 +26,7 @@
 <body>
 <header>
     <nav class="navbar navbar-expand-md navbar-dark"
-         style="background-color: blue">
+         style="background-color: #034844">
         <div>
             <a href="/" class="navbar-brand"><fmt:message key="taxReport"/></a>
         </div>

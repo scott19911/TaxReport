@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,6 +65,17 @@
     }
   </script>
 </head>
+<header style="background-color: #0c5460">  <form action="/local" method="post">
+  <fmt:message key="settings_jsp.label.set_locale"/>:
+  <select name="locale">
+    <c:forEach items="${applicationScope.locales}" var="locale">
+      <c:set var="selected" value="${locale.key == currentLocale ? 'selected' : '' }"/>
+      <option value="${locale.key}" ${selected}>${locale.value}</option>
+    </c:forEach>
+  </select>
+  <input type="submit" value="<fmt:message key='settings_jsp.form.submit_save_locale'/>">
+
+</form></header>
 <body>
 
 <div class="limiter">

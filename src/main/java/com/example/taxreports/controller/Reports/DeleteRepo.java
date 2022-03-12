@@ -17,10 +17,9 @@ public class DeleteRepo  extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         String path = request.getParameter("file");
-        String appPath = request.getServletContext().getRealPath("");
         ReportsDAO reportsDAO = new ReportsDAO();
         try {
-            reportsDAO.deleteRepo(id,appPath+"/"+path);
+            reportsDAO.deleteRepo(id,path);
         } catch (IOException e){
             log.error("Cannot delete file = " + path, e);
         }

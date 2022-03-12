@@ -1,4 +1,4 @@
-
+$(document).ready(
 $(function() {
   var oTable = $('#sortable').DataTable({
     "oLanguage": {
@@ -42,7 +42,7 @@ $("#datepicker_to").datepicker({
   oTable.fnDraw();
 });
 
-});
+}));
 
 // Date range filter
 minDateFilter = "";
