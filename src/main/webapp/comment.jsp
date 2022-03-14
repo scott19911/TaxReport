@@ -72,7 +72,8 @@
     }
 </script>
 <form method="post" action="${pageContext.request.contextPath}/comments" onsubmit="return validate()">
-
+        <fmt:message key="${loc}"/>
+         <br/>
         <fmt:message key="comment"/>:
         <br/>
         <input type="text" name="comm" />

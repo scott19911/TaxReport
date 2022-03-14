@@ -77,6 +77,9 @@
                 <input type="text" placeholder="<fmt:message key="companyname"/>" <c:if test='${act.equals("insert")}'>required=""</c:if> name="company" />
             </div>
             <div>
+                <input type="text" placeholder="<fmt:message key="email"/>" <c:if test='${act.equals("insert")}'>required=""</c:if> name="email" />
+            </div>
+            <div>
                 <input <c:if test='${act.equals("insert")}'>required=""</c:if> oninput="this.value=this.value.slice(0,this.maxLength)"  maxlength="12" placeholder="<fmt:message key="OKPOcode"/>" type="number" name="okpo" />
             </div>
             <c:if test='${act.equals("edit")}'>

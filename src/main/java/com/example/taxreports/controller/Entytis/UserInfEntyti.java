@@ -1,6 +1,7 @@
 package com.example.taxreports.controller.Entytis;
 
 import com.example.taxreports.DAO.EntytiDAO;
+import com.example.taxreports.DAO.UserDAO;
 import com.example.taxreports.TableColums;
 import com.example.taxreports.bean.EntytiBean;
 import com.example.taxreports.bean.UserBean;
@@ -21,6 +22,7 @@ public class UserInfEntyti extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         UserBean user = (UserBean) session.getAttribute(TableColums.USER);
+        UserDAO userDAO = new UserDAO();
         int userId;
 
         if(req.getParameter(TableColums.ID) != null){
@@ -31,6 +33,7 @@ public class UserInfEntyti extends HttpServlet {
         log.info("show info user = " + userId);
         EntytiBean infEntyti = EntytiDAO.userInfo(userId);
         req.setAttribute("infEntyti", infEntyti);
+        req.setAttribute("email", userDAO.getEmailById(userId));
         req.getRequestDispatcher("/entytiAccount.jsp").forward(req, resp);
     }
 

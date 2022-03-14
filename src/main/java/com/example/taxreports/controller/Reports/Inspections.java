@@ -2,8 +2,11 @@ package com.example.taxreports.controller.Reports;
 
 import com.example.taxreports.DAO.InspectorDAO;
 import com.example.taxreports.DAO.ReportsDAO;
+import com.example.taxreports.DAO.UserDAO;
 import com.example.taxreports.bean.CommentsBean;
 import com.example.taxreports.bean.ReportBean;
+
+import com.example.taxreports.util.SendEmail;
 import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
@@ -23,6 +26,7 @@ public class Inspections  extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         InspectorDAO insp= new InspectorDAO();
+        SendEmail email = new SendEmail();
         HttpSession session = request.getSession();
         int idInsp = Integer.parseInt(request.getParameter("userId"));
         int idReport = Integer.parseInt( request.getParameter("id"));
@@ -34,6 +38,7 @@ public class Inspections  extends HttpServlet {
         comm.setIdInsp(idInsp);
         session.setAttribute("id",comm);
         ReportsDAO reportsDAO = new ReportsDAO();
+        UserDAO userDAO = new UserDAO();
         int presentStatus = reportsDAO.getReportStatus(idReport);
         if (presentStatus == 0){
             log.warn("Attempt to change the status of a non-existent report");
@@ -49,12 +54,17 @@ public class Inspections  extends HttpServlet {
         switch (action){
             case ReportBean.STATUS_ACCEPTED:
                 insp.updateReportStatus(ReportBean.STATUS_ACCEPTED,idReport,idInsp);
+                email.sendMail(ReportBean.STATUS_ACCEPTED,idReport,null);
                 response.sendRedirect("/reportList");
                 return;
             case ReportBean.STATUS_IN_PROCESSING: insp.updateReportStatus(ReportBean.STATUS_IN_PROCESSING,idReport,idInsp);
+                email.sendMail(ReportBean.STATUS_IN_PROCESSING,idReport,null);
                 response.sendRedirect("/reportList");
                 return;
-            default:RequestDispatcher dispatcher = request.getRequestDispatcher("/comment.jsp");
+            default: int createrId =  reportsDAO.getIdCreaterReport(idReport);
+                String locale = userDAO.getLocaleById(createrId);
+                request.setAttribute("loc",locale);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/comment.jsp");
                 dispatcher.forward(request, response);
                 break;
         }

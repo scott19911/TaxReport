@@ -56,13 +56,15 @@
         <form name="form" action="/editIns" method="post"  onsubmit="return validate()">
             <h1><fmt:message key="editIns"/></h1>
             <div>
-                <input type="text" placeholder="<fmt:message key="fName"/>" required="" name="fName" />
+                <input type="text" placeholder="<fmt:message key="fName"/>"  name="fName" />
             </div>
 
             <div>
-                <input type="text" placeholder="<fmt:message key="lName"/>" required="" name="lName" />
+                <input type="text" placeholder="<fmt:message key="lName"/>"  name="lName" />
             </div>
-
+            <div>
+                <input type="text" placeholder="<fmt:message key="email"/>"  name="email" />
+            </div>
             <div> <%=(request.getAttribute("errMessage") == null) ? ""
                     : request.getAttribute("errMessage")%></div>
             <div>

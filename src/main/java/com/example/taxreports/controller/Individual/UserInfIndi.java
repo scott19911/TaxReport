@@ -2,6 +2,7 @@ package com.example.taxreports.controller.Individual;
 
 
 import com.example.taxreports.DAO.IndividualDAO;
+import com.example.taxreports.DAO.UserDAO;
 import com.example.taxreports.bean.IndividualBean;
 import com.example.taxreports.bean.UserBean;
 import org.apache.log4j.Logger;
@@ -20,6 +21,7 @@ public class UserInfIndi extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
        HttpSession session = req.getSession();
+       UserDAO userDAO = new UserDAO();
        UserBean user = (UserBean) session.getAttribute("user");
        int userId;
         if(req.getParameter("id") != null){
@@ -29,6 +31,7 @@ public class UserInfIndi extends HttpServlet {
         }
         log.info("show info user = " + userId);
        IndividualBean infInd = IndividualDAO.userInfo(userId);
+        req.setAttribute("email", userDAO.getEmailById(userId));
        req.setAttribute("infInd", infInd);
        req.getRequestDispatcher("/indAccount.jsp").forward(req, resp);
     }

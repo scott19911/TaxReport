@@ -10,6 +10,7 @@ public class RegisterBean implements Serializable {
     private String login;
     private String password;
     private String salt;
+    private String email;
 
     public RegisterBean() {
         // default constructor
@@ -52,5 +53,13 @@ public class RegisterBean implements Serializable {
 
     public void setSalt(String salt) {
         this.salt = salt;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

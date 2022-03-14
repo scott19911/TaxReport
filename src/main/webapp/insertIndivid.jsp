@@ -57,6 +57,9 @@
             <div>
             <input <c:if test='${act.equals("insert")}'>required=""</c:if> oninput="this.value=this.value.slice(0,this.maxLength)"  maxlength="10" placeholder="TIN" type="number" name="tin" />
             </div>
+            <div>
+                <input type="text" placeholder="<fmt:message key="email"/>" <c:if test='${act.equals("insert")}'>required=""</c:if> name="email" />
+            </div>
             <c:if test='${act.equals("edit")}'>
                 <div><input type="password" placeholder="<fmt:message key="newPassword"/>" name="password" /> </div>
                 <div><input type="password" placeholder="<fmt:message key="confirmPassword"/>" name="conpassword" /> </div>

@@ -36,9 +36,12 @@ public class EditEntyti extends  HttpServlet {
             HttpSession session = req.getSession();
             UserBean userBean =(UserBean) session.getAttribute(USER);
             EntytiDAO entytiDAO = new EntytiDAO();
+            UserDAO userDAO = new UserDAO();
             if(act != null && act.equals(ACTION_INSERT)){
-                String company=req.getParameter(REPORT_COMPANY_NAME);
-                String okpo=req.getParameter(ENTYTI_OKPO);
+                String company = req.getParameter(REPORT_COMPANY_NAME);
+                String okpo = req.getParameter(ENTYTI_OKPO);
+                String email = req.getParameter(EMAIL);
+                userDAO.updateEmail(userBean.getId(), email);
                 entytiDAO.insertEntyti(userBean.getId(),company,okpo);
                 log.info("Insert info entyti user id = " + userBean.getId());
             }
@@ -47,6 +50,7 @@ public class EditEntyti extends  HttpServlet {
                 String company=req.getParameter(ENTYTI_COMPANY);
                 String okpo=req.getParameter(ENTYTI_OKPO);
                 String password = req.getParameter(PASSWORD);
+                String email = req.getParameter(EMAIL);
                 if(EntytiDAO.userInfo(userBean.getId()) == null){
                     if (company !=null && okpo != null){
                         entytiDAO.insertEntyti(userBean.getId(),company,okpo);
@@ -58,6 +62,10 @@ public class EditEntyti extends  HttpServlet {
                 if (company != null && !company.isEmpty()){
 
                     entytiDAO.updateCompany(userBean.getId(), company);
+                }
+                if (email != null && !email.isEmpty()){
+
+                    userDAO.updateEmail(userBean.getId(), email);
                 }
                 if (okpo != null && !okpo.isEmpty()){
 

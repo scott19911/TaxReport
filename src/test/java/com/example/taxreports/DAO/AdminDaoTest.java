@@ -14,6 +14,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.taxreports.Queris.SELECT_ALL_INSPECTORS;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
@@ -33,7 +34,7 @@ class AdminDaoTest {
 
     @Test
     void testGetInspectorsList() throws SQLException {
-        String SELECT_ALL_INSPECTORS ="select user_id, FName,LName from inspectors";
+
         List<InspectorsBean> expected = new ArrayList<>();
         expected.add(new InspectorsBean(1,"admin","admin"));
         expected.add(new InspectorsBean(2,"Иван","Иванов"));

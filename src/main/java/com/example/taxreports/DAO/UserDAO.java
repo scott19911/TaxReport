@@ -57,6 +57,7 @@ public class UserDAO {
         String login = registerBean.getLogin();
         String password = registerBean.getPassword();
         String salt = registerBean.getSalt();
+        String email = registerBean.getEmail();
         try(Connection con = ConnectionPool.getInstance().getConnection();
             PreparedStatement preparedStatement = con.prepareStatement(INSERT_USER, Statement.RETURN_GENERATED_KEYS))
         {
@@ -64,6 +65,7 @@ public class UserDAO {
             preparedStatement.setString(2, password);
             preparedStatement.setString(3, role);
             preparedStatement.setString(4, salt);
+            preparedStatement.setString(5, email);
             preparedStatement.executeUpdate();
             ResultSet rs = preparedStatement.getGeneratedKeys();
             if (rs.next()) {
@@ -123,6 +125,18 @@ public class UserDAO {
         } catch (SQLException e) {
             log.error(e);
             throw new RuntimeException("Sorry cannot update password");
+        }
+    }
+
+    public void updateEmail (int id, String email){
+        try (Connection con= ConnectionPool.getInstance().getConnection();
+             PreparedStatement stm = con.prepareStatement(UPDATE_USERS_SET_EMAIL_WHERE_ID)){
+            stm.setString(1,email);
+            stm.setInt(2, id);
+            stm.executeUpdate();
+        } catch (SQLException e) {
+            log.error(e);
+            throw new RuntimeException("Sorry cannot update email");
         }
     }
 
@@ -188,6 +202,21 @@ public class UserDAO {
             log.error(e);
             throw new RuntimeException("Sorry user missing");
         }
+    }
+    public  String getEmailById (int id){
+        String email = null;
+        try (Connection con= ConnectionPool.getInstance().getConnection();
+             PreparedStatement stm = con.prepareStatement(SELECT_EMAIL_USER_BY_ID)){
+            stm.setInt(1,id);
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()){
+                email = rs.getString(TableColums.EMAIL);
+            }
 
+        } catch (SQLException e) {
+            log.error(e);
+            throw new RuntimeException("Sorry user missing");
+        }
+        return email;
     }
 }

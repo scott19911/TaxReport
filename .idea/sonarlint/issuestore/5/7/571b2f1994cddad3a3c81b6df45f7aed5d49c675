@@ -1,0 +1,10 @@
+
+ª
+java:S1989("Handle the following exceptions that could be thrown by "getObject": NoSuchKeyException, AwsServiceException, SdkClientException, S3Exception.(¥¡Ÿûÿÿÿÿ
+q
+java:S1989,"VHandle the following exception that could be thrown by "getOutputStream": IOException.(áÜ–øÿÿÿÿ
+a
+java:S1989-"KHandle the following exception that could be thrown by "read": IOException.(ò­Çü
+g
+java:S1989."LHandle the following exception that could be thrown by "write": IOException.(ú­ÍÑúÿÿÿÿ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(é¡¨Ğÿÿÿÿÿ

@@ -67,7 +67,8 @@ public class AdminDao {
         int userID;
         String fName;
         String lName;
-
+        String email;
+        UserDAO userDAO = new UserDAO();
         try(Connection con = ConnectionPool.getInstance().getConnection(); Statement stm = con.createStatement()) {
             con.setAutoCommit(false);
             ResultSet rs = stm.executeQuery(SELECT_ALL_INSPECTORS);
@@ -75,7 +76,8 @@ public class AdminDao {
                 userID =rs.getInt(TableColums.USER_ID);
                 fName =rs.getString(TableColums.FNAME);
                 lName= rs.getString(TableColums.LNAME);
-                list.add(new InspectorsBean(userID,fName,lName));
+                email = userDAO.getEmailById(userID);
+                list.add(new InspectorsBean(userID,fName,lName,email));
             }
             con.setAutoCommit(true);
         } catch (SQLException e) {

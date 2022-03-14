@@ -1,10 +1,0 @@
-
-w
-java:S1989"aHandle the following exceptions that could be thrown by "forward": ServletException, IOException.(¿¡ì¤
-h
-java:S3776""RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.(üª¼í
-n
-java:S1989I"SHandle the following exception that could be thrown by "sendRedirect": IOException.(†í·”üÿÿÿÿ
-s
-java:S2226"XRemove this misleading mutable servlet instance field or make it "static" and/or "final"(†öÜŸýÿÿÿÿ
-t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÙÐã°þÿÿÿÿ

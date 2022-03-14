@@ -24,6 +24,7 @@ public class Queris {
             "from report as r left join inspectors as i " +
             "on i.user_id= r.inspector_id "+
             "where r.creater = ?";
+    public static final String SELECT_CREATER_ID ="select creater from report where id = ?";
     public static final String DELETE_FROM_REPORT_WHERE_ID = "delete from report where id = ?";
     public static final String SELECT_FILE_PATH_FROM_REPORT_WHERE_ID = "select xml from report where id = ?";
     public static final String SELECT_REPORT_STATUS_BY_ID = "select status_id from report where id = ?";
@@ -43,13 +44,15 @@ public class Queris {
             "where r.status_id = ? or r.status_id = ?";
     public static final String DELETE_FROM_USERS_WHERE_ID = "delete from users where id =? ";
     public static final String UPDATE_USERS_SET_PASSWORD_SALT_WHERE_ID = "update users set password = ?, salt = ? where id =?";
+    public static final String UPDATE_USERS_SET_EMAIL_WHERE_ID = "update users set email = ? where id =?";
     public static final String SELECT_ROLE_FROM_USERS_WHERE_ID = "select role from users where id = ?";
     public static final String SELECT_ID_USER_BY_LOGIN = "select id from users where login = ?";
     public static final String SELECT_LOCALE_USER_BY_ID = "select locale from users where id = ?";
+    public static final String SELECT_EMAIL_USER_BY_ID = "select email from users where id = ?";
     public static final String UPDATE_LOCALE_USER_BY_ID = "update users set locale = ? where id = ?";
     public static final String SELECT_SALT_FROM_USERS_WHERE_LOGIN = "select salt from users where login = ?";
     public static final String SELECT_ALL_USERS = "select id, login,password, role from users";
-    public static final String INSERT_USER = "insert into users(login,password,role,salt) values (?,?,?,?)";
+    public static final String INSERT_USER = "insert into users(login,password,role,salt,email) values (?,?,?,?,?)";
 
 }
 

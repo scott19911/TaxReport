@@ -65,6 +65,7 @@
         <th><fmt:message key="fName"/></th>
         <th><fmt:message key="sName"/></th>
         <th><fmt:message key="tin"/></th>
+        <th><fmt:message key="email"/></th>
     </tr>
     </thead>
     <tbody>
@@ -74,6 +75,7 @@
     <td>${infInd.fName}</td>
     <td>${infInd.sName}</td>
     <td>${infInd.tin}</td>
+    <td>${email}</td>
     </tr>
     </tbody>
 

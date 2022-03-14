@@ -65,6 +65,7 @@
     <tr>
         <th><fmt:message key="companyname"/></th>
         <th><fmt:message key="OKPOcode"/></th>
+        <th><fmt:message key="email"/></th>
 
     </tr>
     </thead>
@@ -73,6 +74,7 @@
     <tr>
         <td>${infEntyti.company}</td>
         <td>${infEntyti.okpo}</td>
+        <td>${email}</td>
 
     </tr>
     </tbody>

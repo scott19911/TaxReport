@@ -46,6 +46,7 @@
         <th data-type="number"><fmt:message key="id"/></th>
         <th><fmt:message key="fName"/></th>
         <th><fmt:message key="lName"/></th>
+        <th><fmt:message key="email"/></th>
         <th><fmt:message key="TODO"/></th>
     </tr>
     </thead>
@@ -56,6 +57,7 @@
         <td>${ins.userId}</td>
         <td>${ins.fName} </td>
         <td>${ins.lName}</td>
+        <td>${ins.email}</td>
         <td>
             <a href="${pageContext.request.contextPath}/editIns?id=${ins.userId}&act=edit">Edit</a>
 

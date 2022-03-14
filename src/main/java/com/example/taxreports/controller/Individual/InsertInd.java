@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+import static com.example.taxreports.TableColums.EMAIL;
+
 @WebServlet("/insertInd")
 public class InsertInd extends HttpServlet {
     private static final Logger log = Logger.getLogger(InsertInd.class);
@@ -37,11 +39,14 @@ public class InsertInd extends HttpServlet {
         HttpSession session = req.getSession();
         UserBean userBean =(UserBean) session.getAttribute("user");
         IndividualDAO individualDAO = new IndividualDAO();
+        UserDAO userDAO = new UserDAO();
        if(act != null && act.equals(ACTION_INSERT)){
            String fName=req.getParameter("fName");
            String sName=req.getParameter("sName");
            String lName=req.getParameter("lName");
            String tin= req.getParameter("tin");
+           String email = req.getParameter(EMAIL);
+           userDAO.updateEmail(userBean.getId(), email);
            individualDAO.insertInd(userBean.getId(), fName,sName,lName,tin);
            log.info("Insert info indi user id = " + userBean.getId());
        }
@@ -50,6 +55,7 @@ public class InsertInd extends HttpServlet {
             String sName=req.getParameter("sName");
             String lName=req.getParameter("lName");
             String tin= req.getParameter("tin");
+            String email = req.getParameter(EMAIL);
             if(IndividualDAO.userInfo(userBean.getId()) == null){
                 if (fName !=null && lName != null && tin != null){
                     individualDAO.insertInd(userBean.getId(), fName,sName,lName,tin);
@@ -67,6 +73,10 @@ public class InsertInd extends HttpServlet {
             }
             if (lName != null && !lName.isEmpty()){
                 individualDAO.updateLnameInd(userBean.getId(), lName);
+            }
+            if (email != null && !email.isEmpty()){
+
+                userDAO.updateEmail(userBean.getId(), email);
             }
             if (password != null && password.length() > 5){
                 UserDAO.updatePassword(userBean.getId(), password);

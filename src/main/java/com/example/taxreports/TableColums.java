@@ -25,5 +25,6 @@ public class TableColums {
     public static final String USER_ROLE = "role";
     public static final String USER_SALT = "salt";
     public static final String USER_NAME = "username";
+    public static final String EMAIL = "email";
 
 }

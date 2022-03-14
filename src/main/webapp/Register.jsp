@@ -87,16 +87,20 @@
       <form class="login100-form validate-form p-b-33 p-t-5"action="RegisterServlet" method="post" onsubmit="return validate()">
 
         <div class="wrap-input100 validate-input" data-validate = "<fmt:message key="Enterusername"/>">
-          <input class="input100" type="text" name="login" placeholder="<fmt:message key="Username"/>">
+          <input class="input100" type="text" required="" name="login" placeholder="<fmt:message key="Username"/>">
+          <span class="focus-input100" data-placeholder="&#xe82a;"></span>
+        </div>
+        <div class="wrap-input100 validate-input" data-validate = "<fmt:message key="email"/>">
+          <input class="input100" type="text" required="" name="email" placeholder="<fmt:message key="email"/>">
           <span class="focus-input100" data-placeholder="&#xe82a;"></span>
         </div>
 
         <div class="wrap-input100 validate-input" data-validate="<fmt:message key="Enterpassword"/>">
-          <input class="input100" type="password" name="password" placeholder="<fmt:message key="pas"/>">
+          <input class="input100" type="password" required="" name="password" placeholder="<fmt:message key="pas"/>">
           <span class="focus-input100" data-placeholder="&#xe80f;"></span>
         </div>
         <div class="wrap-input100 validate-input" data-validate="<fmt:message key="Enterpassword"/>">
-          <input class="input100" type="password" name="conpassword" placeholder="<fmt:message key="confirmPassword"/>">
+          <input class="input100" type="password" required="" name="conpassword" placeholder="<fmt:message key="confirmPassword"/>">
           <span class="focus-input100" data-placeholder="&#xe80f;"></span>
         </div>
         <div><span style="color:red"><%=(request.getAttribute("errMessage") == null) ? ""

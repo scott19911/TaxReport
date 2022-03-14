@@ -4,11 +4,18 @@ public class InspectorsBean {
     int userId;
     String fName;
     String lName;
+    String email;
 
     public InspectorsBean() {
         //default
     }
 
+    public InspectorsBean(int userId, String fName, String lName, String email) {
+        this.email = email;
+        this.userId = userId;
+        this.fName = fName;
+        this.lName = lName;
+    }
     public InspectorsBean(int userId, String fName, String lName) {
         this.userId = userId;
         this.fName = fName;
@@ -35,6 +42,14 @@ public class InspectorsBean {
 
     public void setfName(String fName) {
         this.fName = fName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override

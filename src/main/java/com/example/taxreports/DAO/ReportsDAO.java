@@ -80,7 +80,23 @@ public class ReportsDAO {
         }
         return list;
     }
+    public int getIdCreaterReport (int reportID) {
+        int id = 0;
+        try(Connection con = ConnectionPool.getInstance().getConnection(); PreparedStatement pstm = con.prepareStatement(SELECT_CREATER_ID)) {
+            con.setAutoCommit(false);
+            pstm.setInt(1, reportID);
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()){
+                id =rs.getInt(REPORT_CREATER_ID);
+            }
+            con.setAutoCommit(true);
 
+        } catch (SQLException e) {
+            log.error(e);
+            throw new RuntimeException("Sorry, cannot find creater");
+        }
+        return id;
+    }
     public void deleteRepo(int id, String path) throws IOException {
         S3Util.deleteFile(path);
             if( getReportStatus(id) == ReportBean.STATUS_FILED) {
