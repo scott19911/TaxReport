@@ -65,7 +65,8 @@
     }
   </script>
 </head>
-<header style="background-color: #0c5460">  <form action="/local" method="post">
+<header style="background-color: #0c5460">
+  <form action="/local" method="post">
   <fmt:message key="settings_jsp.label.set_locale"/>:
   <select name="locale">
     <c:forEach items="${applicationScope.locales}" var="locale">

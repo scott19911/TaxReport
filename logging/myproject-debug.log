@@ -2,3 +2,7 @@
 2022-03-07 23:10:25 INFO  LoginServlet:57 - User successes log in id = 9 and hes role = adm
 2022-03-07 23:10:25 WARN  Inspections:39 - Attempt to change the status of a non-existent report
 2022-03-07 23:10:26 INFO  ReportServlet:89 - Insert report file = uploadDir/32022-03-07231026/file1.xml
+2022-03-16 16:14:50 INFO  LoginServlet:60 - User successes log in id = 9 and hes role = adm
+2022-03-16 16:14:50 WARN  Inspections:44 - Attempt to change the status of a non-existent report
+2022-03-16 16:14:50 INFO  ReportServlet:72 - Insert report file = 3/2022-03-16161450/file1.xml
+2022-03-16 16:14:51 ERROR ReportServlet:76 - Cannot load file java.lang.NullPointerException

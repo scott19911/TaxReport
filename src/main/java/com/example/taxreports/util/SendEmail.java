@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
 
 public class SendEmail {
     private static final Logger log = Logger.getLogger(SendEmail.class);
-    public static final String ADMIN_EMAIL = "andrescott569@gmail.com";
+    public static final String ADMIN_EMAIL = "taxreport128@gmail.com";
 
     public void sendMail( int statusId, int reportId, String comment) throws IOException {
         Email from = new Email(ADMIN_EMAIL);
@@ -46,7 +46,7 @@ public class SendEmail {
         Content content = new Content("text/plain", message);
         Mail mail = new Mail(from, subject, to, content);
 
-        SendGrid sg = new SendGrid(System.getenv("EMAIL_KEY"));
+        SendGrid sg = new SendGrid(System.getenv("MAIL_KEY"));
         //SendGrid sg = new SendGrid("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");
         Request request = new Request();
         try {
