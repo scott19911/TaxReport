@@ -3,7 +3,6 @@ package com.example.taxreports.util;
 
 import com.example.taxreports.DAO.UserDAO;
 import com.example.taxreports.bean.UserBean;
-import com.example.taxreports.controller.Authorization.RegisterServlet;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -25,12 +24,14 @@ public class SetLocale extends HttpServlet {
 
         if (user == null){
             req.getSession().setAttribute("javax.servlet.jsp.jstl.fmt.locale.session", req.getParameter("locale"));
+            user.setLocale(req.getParameter("locale"));
             req.getRequestDispatcher("/Register.jsp").forward(req, resp);
         } else {
             String locale = req.getParameter("locale");
             userDAO.setLocaleById(user.getId(), locale);
             req.getSession().setAttribute("javax.servlet.jsp.jstl.fmt.locale.session", locale);
             req.getRequestDispatcher("/settings.jsp").forward(req, resp);
+            user.setLocale(req.getParameter("locale"));
             log.info("User id = " + user.getId() + " set locale "+ locale);
         }
 

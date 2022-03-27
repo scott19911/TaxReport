@@ -1,14 +1,11 @@
 package com.example.taxreports.DAO;
 
-import com.example.taxreports.TableColums;
 import com.example.taxreports.bean.ReportBean;
 import com.example.taxreports.util.ConnectionPool;
 import com.example.taxreports.util.S3Util;
 import org.apache.log4j.Logger;
-
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -83,21 +80,18 @@ public class ReportsDAO {
     public int getIdCreaterReport (int reportID) {
         int id = 0;
         try(Connection con = ConnectionPool.getInstance().getConnection(); PreparedStatement pstm = con.prepareStatement(SELECT_CREATER_ID)) {
-            con.setAutoCommit(false);
             pstm.setInt(1, reportID);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()){
                 id =rs.getInt(REPORT_CREATER_ID);
             }
-            con.setAutoCommit(true);
-
         } catch (SQLException e) {
             log.error(e);
             throw new RuntimeException("Sorry, cannot find creater");
         }
         return id;
     }
-    public void deleteRepo(int id, String path) throws IOException {
+    public void deleteRepo(int id, String path) {
         S3Util.deleteFile(path);
             if( getReportStatus(id) == ReportBean.STATUS_FILED) {
                 try (Connection con = ConnectionPool.getInstance().getConnection();
@@ -245,13 +239,13 @@ public class ReportsDAO {
             throw new RuntimeException("Sorry, cannot find inspector.");
         }
     }
-    public String getPath(int id) throws IOException {
+    public String getPath(int id)  {
 
             try (Connection con = ConnectionPool.getInstance().getConnection();
                  PreparedStatement stm = con.prepareStatement(SELECT_FILE_PATH_FROM_REPORT_WHERE_ID)) {
                 stm.setInt(1, id);
                ResultSet rs = stm.executeQuery();
-               while (rs.next()){
+               if (rs.next()){
                    return rs.getString(REPORT_FILE_PATH);
                }
 

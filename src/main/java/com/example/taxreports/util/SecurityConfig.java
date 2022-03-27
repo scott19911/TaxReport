@@ -14,7 +14,7 @@ public class SecurityConfig {
 
     // String: Role
     // List<String>: urlPatterns.
-    private static final Map<String, List<String>> mapConfig = new HashMap<String, List<String>>();
+    private static final Map<String, List<String>> mapConfig = new HashMap<>();
 
     static {
         init();
@@ -22,7 +22,7 @@ public class SecurityConfig {
 
     private static void init() {
         // Конфигурация для роли "Entyti".
-        List<String> urlPatterns = new ArrayList<String>();
+        List<String> urlPatterns = new ArrayList<>();
 
         urlPatterns.add("/UploadReport");
         urlPatterns.add("/reportList");
@@ -33,7 +33,7 @@ public class SecurityConfig {
 
         mapConfig.put(ROLE_ENTYTI, urlPatterns);
         // Конфигурация для роли "Individual".
-        List<String> urlPatterns1 = new ArrayList<String>();
+        List<String> urlPatterns1 = new ArrayList<>();
 
         urlPatterns1.add("/UploadReport");
         urlPatterns1.add("/reportList");
@@ -45,7 +45,7 @@ public class SecurityConfig {
 
 
         // Конфигурация для роли "Inspector".
-        List<String> urlPatterns2 = new ArrayList<String>();
+        List<String> urlPatterns2 = new ArrayList<>();
 
         urlPatterns2.add("/reportList");
         urlPatterns2.add("/comments");
@@ -56,7 +56,7 @@ public class SecurityConfig {
         mapConfig.put(ROLE_INSPECTOR, urlPatterns2);
 
         // Конфигурация для роли "Admin".
-        List<String> urlPatterns3 = new ArrayList<String>();
+        List<String> urlPatterns3 = new ArrayList<>();
 
         urlPatterns3.add("/editIns");
         urlPatterns3.add("/listIns");

@@ -47,7 +47,6 @@ public class SendEmail {
         Mail mail = new Mail(from, subject, to, content);
 
         SendGrid sg = new SendGrid(System.getenv("MAIL_KEY"));
-        //SendGrid sg = new SendGrid("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");
         Request request = new Request();
         try {
             request.setMethod(Method.POST);

@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import com.amazonaws.AmazonServiceException;
-import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import org.apache.log4j.Logger;
@@ -48,14 +47,14 @@ public class S3Util {
 			// run custom logics when the file exists on S3
 		});
 	}
-	public static void deleteFile (String object_key){
+	public static void deleteFile (String objectKey){
 
 		final AmazonS3 s3 = AmazonS3ClientBuilder.standard().withRegion(String.valueOf(Region.EU_CENTRAL_1)).build();
 
 		try {
-			s3.deleteObject(BUCKET, object_key);
+			s3.deleteObject(BUCKET, objectKey);
 
-			log.info("Delete file = " + object_key);
+			log.info("Delete file = " + objectKey);
 
 		} catch (AmazonServiceException e) {
 			log.error(e);

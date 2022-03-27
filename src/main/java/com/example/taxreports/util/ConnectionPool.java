@@ -26,7 +26,7 @@ public class ConnectionPool {
 
     public Connection getConnection(){
         Context ctx;
-        Connection c = null;
+        Connection c;
         try {
             ctx = new InitialContext();
             DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc/mydatabase");

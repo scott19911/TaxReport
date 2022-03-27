@@ -21,9 +21,9 @@ import java.security.Principal;
  */
 public class UserRoleRequestWrapper extends HttpServletRequestWrapper {
     private static final Logger log = Logger.getLogger(UserRoleRequestWrapper.class);
-    private int user;
-    private String roles = null;
-    private HttpServletRequest realRequest;
+    private final int user;
+    private final String roles;
+    private final HttpServletRequest realRequest;
 
     public UserRoleRequestWrapper(int user, String roles, HttpServletRequest request) {
         super(request);

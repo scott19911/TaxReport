@@ -24,7 +24,7 @@
         <description></description>
         <display-name>RegisterServlet</display-name>
         <servlet-name>RegisterServlet</servlet-name>
-        <servlet-class>com.example.taxreports.controller.Authorization.RegisterServlet</servlet-class>
+        <servlet-class>com.example.taxreports.controller.authorization.RegisterServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
@@ -35,7 +35,7 @@
         <description></description>
         <display-name>LogoutServlet</display-name>
         <servlet-name>LogoutServlet</servlet-name>
-        <servlet-class>com.example.taxreports.controller.Authorization.LogoutServlet</servlet-class>
+        <servlet-class>com.example.taxreports.controller.authorization.LogoutServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LogoutServlet</servlet-name>

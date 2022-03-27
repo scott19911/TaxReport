@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
+
 
 
 @WebFilter("/*")
@@ -17,10 +17,12 @@ public class SecurityFilter implements Filter {
     private static final Logger log = Logger.getLogger(SecurityFilter.class);
 
     public SecurityFilter() {
+        //default constructor
     }
 
     @Override
     public void destroy() {
+        //default
     }
 
     @Override
@@ -89,7 +91,7 @@ public class SecurityFilter implements Filter {
 
     @Override
     public void init(FilterConfig fConfig) throws ServletException {
-
+        //default
     }
 
 

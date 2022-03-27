@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib version="2.1" xmlns="http://java.sun.com/xml/ns/j2ee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee web-jsptaglibrary_2_1.xsd">
+    <tlib-version>1.0</tlib-version>
+    <short-name>stat</short-name>
+    <uri>/WEB-INF/customTag</uri>
+    <tag>
+        <name>getStatus</name>
+        <tag-class>com.example.taxreports.MyTag</tag-class>
+        <body-content>empty</body-content>
+        <dynamic-attributes>true</dynamic-attributes>
+        <info>DynamicAttrTag displayes dynamic attribute values</info>
+    </tag>
+</taglib>

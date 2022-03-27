@@ -1,5 +1,7 @@
 package com.example.taxreports.DAO;
 
+import com.example.taxreports.Queris;
+import com.example.taxreports.TableColums;
 import com.example.taxreports.bean.EntytiBean;
 import com.example.taxreports.util.ConnectionPool;
 import org.junit.jupiter.api.AfterAll;
@@ -25,14 +27,11 @@ class EntytiDAOTest {
                 mockStatic(ConnectionPool.class);
     }
 
-    @AfterAll
-    public static void close() {
-        mocked.close();
-    }
+
 
     @Test
     void userInfo() throws SQLException {
-        String SELECT_ENTYTI = "select Company,OKPO from entytis where user_id =?";
+
         EntytiBean expected = new EntytiBean("Base","123456789012",1);
 
 
@@ -42,10 +41,10 @@ class EntytiDAOTest {
                 .thenReturn(true)
                 .thenReturn(false);
 
-        when(rs.getString("Company"))
+        when(rs.getString(TableColums.ENTYTI_COMPANY))
                 .thenReturn("Base");
 
-        when(rs.getString("OKPO"))
+        when(rs.getString(TableColums.ENTYTI_OKPO))
                 .thenReturn("123456789012");
 
 
@@ -55,7 +54,7 @@ class EntytiDAOTest {
 
         Connection con = mock(Connection.class);
 
-        when(con.prepareStatement(SELECT_ENTYTI)).thenReturn(stmt);
+        when(con.prepareStatement(Queris.SELECT_ENTYTI_BY_ID)).thenReturn(stmt);
         ConnectionPool dbUtils = mock(ConnectionPool.class);
         when(dbUtils.getConnection())
                 .thenReturn(con);
