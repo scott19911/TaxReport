@@ -8,12 +8,20 @@ import com.example.taxreports.util.SecurityPassword;
 import org.apache.log4j.Logger;
 
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+import java.util.Date;
 
 import static com.example.taxreports.Queris.*;
+import static com.example.taxreports.TableColums.AVALAIBLE;
+import static com.example.taxreports.TableColums.TIME;
 
 public class UserDAO {
    private static final Logger log = Logger.getLogger(UserDAO.class);
-
+   private final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ROOT);
+    public static final long TIME_VERIFI = 900000L;
     public UserBean authenticateUser(RegisterBean registerBean)
     {
         String login = registerBean.getLogin(); //Assign user entered values to temporary variables.
@@ -218,5 +226,65 @@ public class UserDAO {
             throw new RuntimeException("Sorry user missing");
         }
         return email;
+    }
+    public int getIdByEmail (String email){
+        try (Connection con= ConnectionPool.getInstance().getConnection();
+             PreparedStatement stm = con.prepareStatement(SELECT_ID_BY_EMAIL)){
+            stm.setString(1,email);
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()){
+               return rs.getInt(TableColums.ID);
+            }
+        } catch (SQLException e) {
+            log.error(e);
+            throw new RuntimeException("Sorry user missing");
+        }
+        return 0;
+    }
+    public void addRestorePassword (int id, String key){
+       Date date = new Date();
+        try (Connection con= ConnectionPool.getInstance().getConnection();
+             PreparedStatement stm = con.prepareStatement(INSERT_NEW_REQUEST_RESTOR_PASSWORD)){
+            stm.setInt(1,id);
+            stm.setString(2,key);
+            stm.setTimestamp(3, Timestamp.valueOf(DATE_FORMAT.format(date)));
+            stm.executeUpdate();
+        } catch (SQLException e) {
+            log.error(e);
+            throw new RuntimeException("Sorry cannot creat request");
+        }
+    }
+    public boolean verifiRestorePassword (int id, String key, Date date){
+        Date createDate;
+
+        try (Connection con= ConnectionPool.getInstance().getConnection();
+             PreparedStatement stm = con.prepareStatement(SELECT_REQUEST_RESTOR_PASSWORD)){
+            stm.setInt(1,id);
+            stm.setString(2,key);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()){
+             createDate = DATE_FORMAT.parse(rs.getString(TIME));
+             if(createDate.getTime() - date.getTime() < TIME_VERIFI && rs.getBoolean(AVALAIBLE)){
+                 return true;
+             }
+            }
+
+        } catch (Exception e) {
+            log.error(e);
+            throw new RuntimeException("Sorry cannot restore password, try again");
+        }
+        return false;
+    }
+    public boolean disableRestorePassword (int id, String key){
+        try (Connection con= ConnectionPool.getInstance().getConnection();
+             PreparedStatement stm = con.prepareStatement(UPDATE_AVALAIBLE_RESTOR_PASSWORD)){
+            stm.setInt(1,id);
+            stm.setString(2,key);
+            stm.executeUpdate();
+        } catch (Exception e) {
+            log.error(e);
+            throw new RuntimeException("Sorry cannot restore password, try again");
+        }
+        return false;
     }
 }

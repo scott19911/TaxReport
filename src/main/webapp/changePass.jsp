@@ -1,12 +1,12 @@
 <%--
   Created by IntelliJ IDEA.
   User: scott1991
-  Date: 12.02.2022
-  Time: 23:05
+  Date: 31.03.2022
+  Time: 18:01
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-             pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -71,22 +71,10 @@
 
 <div class="container">
     <section id="content">
-        <form name="form" action="/editEntyti" method="post"  onsubmit="return validate()">
-            <h1><fmt:message key="userinfo"/></h1>
-            <div>
-                <input type="text" placeholder="<fmt:message key="companyname"/>" <c:if test='${act.equals("insert")}'>required=""</c:if> name="company" />
-            </div>
-            <div>
-                <input <c:if test='${act.equals("insert")}'>required=""</c:if> oninput="this.value=this.value.slice(0,this.maxLength)"  maxlength="12" placeholder="<fmt:message key="OKPOcode"/>" type="number" name="okpo" />
-            </div>
-            <c:if test='${act.equals("edit")}'>
-                <div>
-                    <input type="text" placeholder="<fmt:message key="email"/>" <c:if test='${act.equals("insert")}'>required=""</c:if> name="email" />
-                </div>
+        <form name="form" action="/editPassword"" method="post"  onsubmit="return validate()">
                 <div><input type="password" placeholder="<fmt:message key="newPassword"/>" name="password" /> </div>
                 <div><input type="password" placeholder="<fmt:message key="confirmPassword"/>" name="conpassword" /> </div>
                 </tr>
-            </c:if>
             <div> <%=(request.getAttribute("errMessage") == null) ? ""
                     : request.getAttribute("errMessage")%></div>
             <div>

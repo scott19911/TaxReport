@@ -43,12 +43,12 @@ public class Inspections  extends HttpServlet {
         if (presentStatus == 0){
             log.warn("Attempt to change the status of a non-existent report");
             request.setAttribute("errMessage","Sorry,no such file.");
-            request.getRequestDispatcher("/ErrorPage.jsp").forward(request, response);
+            request.getRequestDispatcher("/ErrorHandler").forward(request, response);
         } else if (presentStatus == ReportBean.STATUS_ACCEPTED || presentStatus == ReportBean.STATUS_REJECT
         || presentStatus == action || !currentInspector(idReport,idInsp)) {
             log.info("Invalid attempt to change status");
             request.setAttribute("errMessage","Sorry your can't change status of this report");
-            request.getRequestDispatcher("/ErrorPage.jsp").forward(request, response);
+            request.getRequestDispatcher("/ErrorHandler").forward(request, response);
         }  else{
 
         switch (action){

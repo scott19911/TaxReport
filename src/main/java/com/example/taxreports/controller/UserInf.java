@@ -16,6 +16,7 @@ public class UserInf extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("id"));
+
         String userRole = UserDAO.getUserRoleByID(id);
         log.info("Show user info id= " + id);
         if (userRole.equals("indi")){

@@ -103,7 +103,8 @@ class UserDAOTest {
 
         mocked.when(ConnectionPool::getInstance)
                 .thenReturn(dbUtils);
-        String actual =UserDAO.getUserRoleByID(1);
+        UserDAO userDAO = mock(UserDAO.class);
+        String actual =userDAO.getUserRoleByID(1);
 
         assertEquals(expected,actual);
 

@@ -59,7 +59,34 @@ public class SendEmail {
 
         } catch (IOException ex) {
             log.error(ex);
-            throw ex;
+            throw new RuntimeException(ex);
+        }
+    }
+    public void restorPass(String maile, String key, int id, String url) throws IOException {
+        Email from = new Email(ADMIN_EMAIL);
+        String restorURL = url + "id=" + id + "&paskey=" + key;
+        Email to = new Email(maile);
+        UserDAO userDAO = new UserDAO();
+        String locale = userDAO.getLocaleById(id);
+        Locale current = new Locale(locale);
+        ResourceBundle rb = ResourceBundle.getBundle("resources", current);
+        String subject = rb.getString("Restorepassword");
+        String message =rb.getString("Recover")+"\n" + restorURL;
+        Content content = new Content("text/plain", message);
+        Mail mail = new Mail(from, subject, to, content);
+        SendGrid sg = new SendGrid(System.getenv("MAIL_KEY"));
+        Request request = new Request();
+        try {
+            request.setMethod(Method.POST);
+            request.setEndpoint("mail/send");
+            request.setBody(mail.build());
+            Response response = sg.api(request);
+            log.info("Send email to userId = " + id + response.getStatusCode()
+                    + response.getBody() + response.getHeaders());
+
+        } catch (IOException ex) {
+            log.error(ex);
+            throw new RuntimeException(ex);
         }
     }
 

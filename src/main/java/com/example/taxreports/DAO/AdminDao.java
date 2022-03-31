@@ -2,6 +2,7 @@ package com.example.taxreports.DAO;
 
 import com.example.taxreports.TableColums;
 import com.example.taxreports.bean.InspectorsBean;
+import com.example.taxreports.bean.RegisterBean;
 import com.example.taxreports.util.ConnectionPool;
 import org.apache.log4j.Logger;
 
@@ -11,12 +12,19 @@ import java.util.List;
 
 import static com.example.taxreports.Queris.*;
 
-
+/**
+ * The class is responsible for making changes to the database of a user with the administrator role
+ */
 public class AdminDao {
 
     private static final Logger log = Logger.getLogger(AdminDao.class);
 
-
+    /**
+     * @see AdminDao#editInspector(int, String, String) allows you to edit the name and surname of the inspector by id
+     * @param id inspector id
+     * @param fName First Name
+     * @param sName Surname
+     */
     public void editInspector(int id, String fName, String sName){
 
         try (Connection con= ConnectionPool.getInstance().getConnection();
@@ -30,6 +38,14 @@ public class AdminDao {
             throw new RuntimeException("Sorry, cannot edit such user");
         }
     }
+
+    /**
+     * @see AdminDao#createInspector(int, String, String) Adding Inspector Information
+     * @param userId inspector ID obtained during user registration
+     * @see UserDAO#registerUser(RegisterBean)
+     * @param fName First Name
+     * @param lName Surname
+     */
     public void createInspector(int userId, String fName,String lName){
 
         try (Connection con= ConnectionPool.getInstance().getConnection();
@@ -43,6 +59,11 @@ public class AdminDao {
             throw new RuntimeException("Sorry, cannot register such user");
         }
     }
+
+    /**
+     * allows deleted inspectors by id
+     * @param id inspector id
+     */
     public void deleteInspector(int id){
 
         UserDAO userDAO = new UserDAO();
@@ -61,6 +82,10 @@ public class AdminDao {
 
     }
 
+    /**
+     *returns avalaible  list of inspectors
+     * @return List<InspectorsBean>
+     */
     public static List<InspectorsBean> getInspectorsList(){
 
         List<InspectorsBean> list = new ArrayList<>();

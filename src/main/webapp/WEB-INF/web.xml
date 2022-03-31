@@ -5,7 +5,7 @@
          version="4.0">
     <error-page>
         <error-code>404</error-code>
-        <location>/ErrorPage.jsp</location>
+        <location>/ErrorHandler</location>
     </error-page>
     <error-page>
         <error-code>405</error-code>

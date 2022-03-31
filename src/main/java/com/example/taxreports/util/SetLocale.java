@@ -1,10 +1,7 @@
 package com.example.taxreports.util;
-
-
 import com.example.taxreports.DAO.UserDAO;
 import com.example.taxreports.bean.UserBean;
 import org.apache.log4j.Logger;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,7 +21,6 @@ public class SetLocale extends HttpServlet {
 
         if (user == null){
             req.getSession().setAttribute("javax.servlet.jsp.jstl.fmt.locale.session", req.getParameter("locale"));
-            user.setLocale(req.getParameter("locale"));
             req.getRequestDispatcher("/Register.jsp").forward(req, resp);
         } else {
             String locale = req.getParameter("locale");

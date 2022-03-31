@@ -49,6 +49,10 @@ public class Queris {
     public static final String SELECT_ID_USER_BY_LOGIN = "select id from users where login = ?";
     public static final String SELECT_LOCALE_USER_BY_ID = "select locale from users where id = ?";
     public static final String SELECT_EMAIL_USER_BY_ID = "select email from users where id = ?";
+    public static final String SELECT_ID_BY_EMAIL = "select id from users where email = ?";
+    public static final String INSERT_NEW_REQUEST_RESTOR_PASSWORD = "insert into restorpass (userID,paskey,starttime) values (?,?,?)";
+    public static final String SELECT_REQUEST_RESTOR_PASSWORD = "select starttime, avalaible from restorpass where  userID=? and paskey=?";
+    public static final String UPDATE_AVALAIBLE_RESTOR_PASSWORD = "update restorpass set avalaible= 0 where  userID=? and paskey=?";
     public static final String UPDATE_LOCALE_USER_BY_ID = "update users set locale = ? where id = ?";
     public static final String SELECT_SALT_FROM_USERS_WHERE_LOGIN = "select salt from users where login = ?";
     public static final String SELECT_ALL_USERS = "select id, login,password, role from users";

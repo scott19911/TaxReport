@@ -1,11 +1,14 @@
 package com.example.taxreports;
 
 public class TableColums {
-    public static final String ID= "id";
-    public static final String LOCALE= "locale";
-    public static final String ENTYTI_COMPANY= "company";
-    public static final String ENTYTI_OKPO= "okpo";
-    public static final String USER_ID= "user_id";
+    public static final String ID = "id";
+    public static final String KEY = "paskey";
+    public static final String TIME = "starttime";
+    public static final String AVALAIBLE = "avalaible";
+    public static final String LOCALE = "locale";
+    public static final String ENTYTI_COMPANY = "company";
+    public static final String ENTYTI_OKPO = "okpo";
+    public static final String USER_ID = "user_id";
     public static final String FNAME = "FNAME";
     public static final String S_NAME = "sNAME";
     public static final String LNAME = "LNAME";

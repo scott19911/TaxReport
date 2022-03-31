@@ -85,6 +85,7 @@
         <div><span style="color:red"><%=(request.getAttribute("errMessage") == null) ? ""
                 : request.getAttribute("errMessage")%></span>
          </div>
+        <a href="/restorPassword.jsp" style="color: #0c5460"><fmt:message key="forgotpassword"/></a>
         <div class="container-login100-form-btn m-t-32">
           <button class="login100-form-btn">
            <fmt:message key="login"/>

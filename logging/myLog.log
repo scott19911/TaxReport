@@ -92,3 +92,7 @@ javax.naming.NoInitialContextException: Need to specify class name in environmen
 2022-03-24 13:15:46 WARN  Inspections:44 - Attempt to change the status of a non-existent report
 2022-03-24 13:15:47 INFO  ReportServlet:72 - Insert report file = 3/2022-03-24131547/input.xml
 2022-03-24 13:15:58 ERROR ReportServlet:76 - Cannot load file software.amazon.awssdk.core.exception.SdkClientException: Received an UnknownHostException when attempting to interact with a service. See cause for the exact endpoint that is failing to resolve. If this is happening on an endpoint that previously worked, there may be a network connectivity issue or your DNS cache could be storing endpoints for too long.
+2022-03-30 19:54:36 INFO  LoginServlet:70 - User successes log in id = 9 and hes role = adm
+2022-03-30 19:54:43 WARN  Inspections:44 - Attempt to change the status of a non-existent report
+2022-03-30 19:54:43 INFO  ReportServlet:67 - Insert report file = 3/2022-03-30195443/input.xml
+2022-03-30 19:54:45 INFO  RegisterServlet:61 - Register user role indi
