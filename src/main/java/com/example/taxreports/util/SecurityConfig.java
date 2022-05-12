@@ -4,16 +4,15 @@ import org.apache.log4j.Logger;
 
 import java.util.*;
 
+/**
+ * This class is responsible for setting user access levels according to their role.
+ */
 public class SecurityConfig {
     private static final Logger log = Logger.getLogger(SecurityConfig.class);
     public static final String ROLE_INSPECTOR= "insp";
     public static final String ROLE_INDIVIDUAL= "indi";
     public static final String ROLE_ENTYTI= "entyti";
     public static final String ROLE_ADMIN= "adm";
-
-
-    // String: Role
-    // List<String>: urlPatterns.
     private static final Map<String, List<String>> mapConfig = new HashMap<>();
 
     static {
@@ -21,7 +20,9 @@ public class SecurityConfig {
     }
 
     private static void init() {
-        // Конфигурация для роли "Entyti".
+        /**
+         * "Entyti" role configuration
+         */
         List<String> urlPatterns = new ArrayList<>();
 
         urlPatterns.add("/UploadReport");
@@ -30,9 +31,11 @@ public class SecurityConfig {
         urlPatterns.add("/editEntyti");
         urlPatterns.add("/accountEntyti");
 
-
         mapConfig.put(ROLE_ENTYTI, urlPatterns);
-        // Конфигурация для роли "Individual".
+
+        /**
+         * "Individual"role configuration
+         */
         List<String> urlPatterns1 = new ArrayList<>();
 
         urlPatterns1.add("/UploadReport");
@@ -42,9 +45,9 @@ public class SecurityConfig {
         urlPatterns1.add("/accountInd");
 
         mapConfig.put(ROLE_INDIVIDUAL, urlPatterns1);
-
-
-        // Конфигурация для роли "Inspector".
+        /**
+         * "Inspector" role configuration
+         */
         List<String> urlPatterns2 = new ArrayList<>();
 
         urlPatterns2.add("/reportList");
@@ -55,7 +58,9 @@ public class SecurityConfig {
 
         mapConfig.put(ROLE_INSPECTOR, urlPatterns2);
 
-        // Конфигурация для роли "Admin".
+        /**
+         * "Admin" role configuration
+         */
         List<String> urlPatterns3 = new ArrayList<>();
 
         urlPatterns3.add("/editIns");
@@ -64,7 +69,7 @@ public class SecurityConfig {
 
         mapConfig.put(ROLE_ADMIN, urlPatterns3);
 
-        log.info("setup security confif");
+        log.info("setup security config");
     }
 
     public static Set<String> getAllAppRoles() {

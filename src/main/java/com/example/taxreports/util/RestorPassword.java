@@ -2,6 +2,7 @@ package com.example.taxreports.util;
 
 import com.example.taxreports.DAO.UserDAO;
 import com.example.taxreports.TableColums;
+import com.example.taxreports.Validates;
 import com.example.taxreports.bean.UserBean;
 import com.mysql.cj.Session;
 
@@ -34,8 +35,10 @@ public class RestorPassword extends HttpServlet {
             userBean.setLocale(userDAO.getLocaleById(id));
             userBean.setRole(UserDAO.getUserRoleByID(id));
             session.setAttribute(USER,userBean);
+            req.getSession().setAttribute("javax.servlet.jsp.jstl.fmt.locale.session",userDAO.getLocaleById(id));
             req.getRequestDispatcher("/changePass.jsp").forward(req, resp);
         } else {
+            req.setAttribute("errMessage", "The link has expired or has already been used.");
             req.getRequestDispatcher("/ErrorHandler").forward(req, resp);
         }
     }
@@ -49,7 +52,7 @@ public class RestorPassword extends HttpServlet {
     String salt = securityPassword.getSalt();
     String key = securityPassword.getHashPassword(new Date() + salt);
     int id;
-    if (patternMatches(email)){
+    if (Validates.validEmail(email)){
         id = userDAO.getIdByEmail(email);
     } else {
         id = userDAO.getIdByLogin(email);
@@ -60,14 +63,9 @@ public class RestorPassword extends HttpServlet {
     }
     sendEmail.restorPass(email,key,id,URL);
     userDAO.addRestorePassword(id,key);
+    req.getSession().setAttribute("errMessage", "Check your email");
     resp.sendRedirect("/Login.jsp");
     }
 
-    public static boolean patternMatches(String emailAddress) {
-        String regexPattern = "^(?=.{1,64}@)[A-Za-z0-9\\+_-]+(\\.[A-Za-z0-9\\+_-]+)*@"
-                + "[^-][A-Za-z0-9\\+-]+(\\.[A-Za-z0-9\\+-]+)*(\\.[A-Za-z]{2,})$";
-        return Pattern.compile(regexPattern)
-                .matcher(emailAddress)
-                .matches();
-    }
+
 }

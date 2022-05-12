@@ -2,6 +2,7 @@ package com.example.taxreports.controller.entytis;
 
 import com.example.taxreports.DAO.EntytiDAO;
 import com.example.taxreports.DAO.UserDAO;
+import com.example.taxreports.Validates;
 import com.example.taxreports.bean.UserBean;
 import org.apache.log4j.Logger;
 
@@ -36,13 +37,20 @@ public class EditEntyti extends  HttpServlet {
             UserBean userBean =(UserBean) session.getAttribute(USER);
             EntytiDAO entytiDAO = new EntytiDAO();
             UserDAO userDAO = new UserDAO();
+            Validates validates = new Validates();
             if(act != null && act.equals(ACTION_INSERT)){
                 String company = req.getParameter(REPORT_COMPANY_NAME);
                 String okpo = req.getParameter(ENTYTI_OKPO);
                 String email = req.getParameter(EMAIL);
-                userDAO.updateEmail(userBean.getId(), email);
-                entytiDAO.insertEntyti(userBean.getId(),company,okpo);
-                log.info("Insert info entyti user id = " + userBean.getId());
+                if (!validates.validOKPO(okpo)){
+                    req.getSession().setAttribute("errMessage", "Check your OKPO");
+                    resp.sendRedirect("/ErrorHandler");
+                    return;
+                }
+                    userDAO.updateEmail(userBean.getId(), email);
+                    entytiDAO.insertEntyti(userBean.getId(), company, okpo);
+                    log.info("Insert info entyti user id = " + userBean.getId());
+
             }
             if(act != null && act.equals(ACTION_EDIT)){
                 log.info("Edit info entyti user id = " + userBean.getId());
@@ -52,6 +60,11 @@ public class EditEntyti extends  HttpServlet {
                 String email = req.getParameter(EMAIL);
                 if(EntytiDAO.userInfo(userBean.getId()) == null){
                     if (company !=null && okpo != null){
+                        if (!validates.validOKPO(okpo)){
+                            req.getSession().setAttribute("errMessage", "Check your OKPO");
+                            resp.sendRedirect("/ErrorHandler");
+                            return;
+                        }
                         entytiDAO.insertEntyti(userBean.getId(),company,okpo);
                     } else {
                         entytiDAO.insertEntyti(userBean.getId(),"empty","empty");
@@ -63,11 +76,19 @@ public class EditEntyti extends  HttpServlet {
                     entytiDAO.updateCompany(userBean.getId(), company);
                 }
                 if (email != null && !email.isEmpty()){
-
+                    if (!Validates.validEmail(email)){
+                        req.getSession().setAttribute("errMessage", "Check your OKPO");
+                        resp.sendRedirect("/ErrorHandler");
+                        return;
+                    }
                     userDAO.updateEmail(userBean.getId(), email);
                 }
                 if (okpo != null && !okpo.isEmpty()){
-
+                    if (!validates.validOKPO(okpo)){
+                        req.getSession().setAttribute("errMessage", "Check your OKPO");
+                        resp.sendRedirect("/ErrorHandler");
+                        return;
+                    }
                     entytiDAO.updateOkpo(userBean.getId(), okpo);
                 }
 

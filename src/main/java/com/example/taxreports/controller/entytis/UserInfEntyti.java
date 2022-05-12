@@ -24,7 +24,6 @@ public class UserInfEntyti extends HttpServlet {
         UserBean user = (UserBean) session.getAttribute(TableColums.USER);
         UserDAO userDAO = new UserDAO();
         int userId;
-
         if(req.getParameter(TableColums.ID) != null){
             userId = Integer.parseInt(req.getParameter(TableColums.ID));
         } else {

@@ -82,8 +82,7 @@
           <input class="input100" type="password" name="password" placeholder="<fmt:message key="pas"/>">
           <span class="focus-input100" data-placeholder="&#xe80f;"></span>
         </div>
-        <div><span style="color:red"><%=(request.getAttribute("errMessage") == null) ? ""
-                : request.getAttribute("errMessage")%></span>
+        <div><span style="color:red"><c:if test='${errMessage != null}'> ${errMessage}</c:if></span>
          </div>
         <a href="/restorPassword.jsp" style="color: #0c5460"><fmt:message key="forgotpassword"/></a>
         <div class="container-login100-form-btn m-t-32">

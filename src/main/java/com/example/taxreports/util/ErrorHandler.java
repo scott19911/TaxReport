@@ -26,10 +26,9 @@ public class ErrorHandler extends HttpServlet {
     public void doPost(HttpServletRequest request,
                        HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
         String error = handller(request,response);
-        session.setAttribute("errMessage",error);
-        response.sendRedirect("/ErrorPage.jsp");
+        request.setAttribute("errMessage",error);
+        request.getRequestDispatcher("/ErrorPage.jsp").forward(request, response);
     }
     public  String handller(HttpServletRequest request, HttpServletResponse response){
         Throwable throwable = (Throwable) request.getAttribute("javax.servlet.error.exception");

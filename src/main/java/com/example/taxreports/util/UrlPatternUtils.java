@@ -13,15 +13,12 @@ public class UrlPatternUtils {
     private static boolean hasUrlPattern(ServletContext servletContext, String urlPattern) {
 
         Map<String, ? extends ServletRegistration> map = servletContext.getServletRegistrations();
-
         for (String servletName : map.keySet()) {
             ServletRegistration sr = map.get(servletName);
-
             Collection<String> mappings = sr.getMappings();
             if (mappings.contains(urlPattern)) {
                 return true;
             }
-
         }
         log.info("URL was not found");
         return false;

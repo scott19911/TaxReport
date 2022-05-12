@@ -45,20 +45,20 @@
       var login = document.form.login.value;
       var password = document.form.password.value;
       var conpassword= document.form.conpassword.value;
+      var mail = document.form.email.value;
+      var regex =/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-      if (login==null || login.length == 0)
+      if (login == null || login.length == 0)
       {
         alert("<fmt:message key="blank"/>");
         return false;
       }
-
       else if(password.length<6)
       {
         alert("<fmt:message key="pass6"/>");
         return false;
       }
-      else if (password!=conpassword)
-      {
+      else if (password!=conpassword) {
         alert("<fmt:message key="conpass"/>");
         return false;
       }
@@ -104,8 +104,7 @@
           <input class="input100" type="password" required="" name="conpassword" placeholder="<fmt:message key="confirmPassword"/>">
           <span class="focus-input100" data-placeholder="&#xe80f;"></span>
         </div>
-        <div><span style="color:red"><%=(request.getAttribute("errMessage") == null) ? ""
-                : request.getAttribute("errMessage")%></span>
+        <div><span style="color:red">${errMessage}</span>
          </div>
           <br>
 
@@ -124,9 +123,6 @@
            <fmt:message key="Registration"/>
           </button>
         </div>
-
-
-
       </form>
     </div>
   </div>

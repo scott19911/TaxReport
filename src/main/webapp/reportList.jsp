@@ -10,6 +10,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="stat" uri="/WEB-INF/customTag" %>
+<%@ taglib prefix="er" tagdir="/WEB-INF/tags" %>
 <html>
 <head>
     <title><fmt:message key="listReports"/></title>
@@ -18,8 +19,6 @@
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
           crossorigin="anonymous">
-
-
     <link href="//cdnjs.cloudflare.com/ajax/libs/datatables/1.9.4/css/jquery.dataTables_themeroller.css" rel="stylesheet" data-semver="1.9.4" data-require="sortable@*" />
     <link href="//cdnjs.cloudflare.com/ajax/libs/datatables/1.9.4/css/jquery.dataTables.css" rel="stylesheet" data-semver="1.9.4" data-require="sortable@*" />
     <link href="//cdnjs.cloudflare.com/ajax/libs/datatables/1.9.4/css/demo_table_jui.css" rel="stylesheet" data-semver="1.9.4" data-require="sortable@*" />
@@ -28,7 +27,6 @@
     <link data-require="jqueryui@*" data-semver="1.10.0" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.0/css/smoothness/jquery-ui-1.10.0.custom.min.css" />
     <script data-require="jqueryui@*" data-semver="1.10.0" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.0/jquery-ui.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/datatables/1.9.4/jquery.dataTables.js" data-semver="1.9.4" data-require="sortable@*"></script>
-
     <script language="JavaScript" type="text/javascript">
         <%@include file='/js/script.js' %>
     </script>
@@ -40,32 +38,7 @@
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-md navbar-dark"
-         style="background-color: #034844">
-        <div>
-            <a href="/" class="navbar-brand"> <fmt:message key="taxReport"/> </a>
-        </div>
-        <c:if test='${!user.getRole().equals("insp")}'>
-            <ul class="navbar-nav">
-                <li><a href="<%=request.getContextPath()%>/UploadReport"
-                       class="nav-link"><fmt:message key="createReports"/></a></li>
-            </ul>
-        </c:if>
-        <ul class="navbar-nav">
-            <li><a href="<%=request.getContextPath()%>/settings.jsp"
-                   class="nav-link"><fmt:message key="language"/></a></li>
-        </ul>
-        <c:if test='${user.getRole().equals("insp")}'>
-            <ul class="navbar-nav">
-                <li><a href="<%=request.getContextPath()%>/changePassword.jsp"
-                       class="nav-link"><fmt:message key="editPassword"/></a></li>
-            </ul>
-        </c:if>
-        <ul class="navbar-nav">
-            <li><a href="<%=request.getContextPath()%>/logOff"
-                   class="nav-link"><fmt:message key="logOff"/></a></li>
-        </ul>
-    </nav>
+    <er:header role="${user.getRole()}"/>
 </header>
 <br>
 <div class="row">

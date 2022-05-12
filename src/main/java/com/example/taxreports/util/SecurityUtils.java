@@ -9,10 +9,9 @@ import java.util.Set;
 
 public class SecurityUtils {
     private static final Logger log = Logger.getLogger(SecurityUtils.class);
-    // Проверить требует ли данный 'request' входа в систему или нет.
     public static boolean isSecurityPage(HttpServletRequest request) {
         String urlPattern = UrlPatternUtils.getUrlPattern(request);
-        log.info("chek security page");
+        log.info("check security page");
         Set<String> roles = SecurityConfig.getAllAppRoles();
 
         for (String role : roles) {
@@ -24,7 +23,6 @@ public class SecurityUtils {
         return false;
     }
 
-    // Проверить имеет ли данный 'request' подходящую роль?
     public static boolean hasPermission(HttpServletRequest request) {
         String urlPattern = UrlPatternUtils.getUrlPattern(request);
 
