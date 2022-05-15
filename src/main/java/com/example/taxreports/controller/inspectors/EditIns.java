@@ -2,6 +2,8 @@ package com.example.taxreports.controller.inspectors;
 
 import com.example.taxreports.DAO.AdminDao;
 import com.example.taxreports.DAO.UserDAO;
+import com.example.taxreports.Page;
+import com.example.taxreports.util.ServletsName;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -12,8 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import static com.example.taxreports.TableColums.EMAIL;
+import static com.example.taxreports.util.ServletsName.EDIT_INSP;
 
-@WebServlet("/editIns")
+@WebServlet(EDIT_INSP)
 public class EditIns extends HttpServlet {
     private static final Logger log = Logger.getLogger(EditIns.class);
     int id;
@@ -33,12 +36,12 @@ public class EditIns extends HttpServlet {
         if (email != null && !email.isEmpty() && id > 0){
             userDAO.updateEmail(id, email);
         }
-        req.getRequestDispatcher("/listIns").forward(req, resp);
+        req.getRequestDispatcher(ServletsName.LIST_INSP).forward(req, resp);
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
          id = Integer.parseInt(req.getParameter("id"));
-        req.getRequestDispatcher("/editIns.jsp").forward(req, resp);
+        req.getRequestDispatcher(Page.EDIT_INSP_INFO).forward(req, resp);
     }
 }

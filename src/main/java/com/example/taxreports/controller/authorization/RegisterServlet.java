@@ -2,6 +2,7 @@ package com.example.taxreports.controller.authorization;
 
 
 import com.example.taxreports.DAO.UserDAO;
+import com.example.taxreports.Page;
 import com.example.taxreports.Validates;
 import com.example.taxreports.bean.RegisterBean;
 import com.example.taxreports.bean.UserBean;
@@ -35,11 +36,11 @@ public class RegisterServlet extends HttpServlet {
         SecurityPassword securityPassword = new SecurityPassword();
         if (userDAO.getIdByLogin(login) > 0){
             session.setAttribute(ERR_MESSAGE, "Oops, login is already taken");
-            response.sendRedirect("/Register.jsp");
+            response.sendRedirect(Page.REGISTRATION);
             return;
         } else if(!Validates.validEmail(email)){
             session.setAttribute(ERR_MESSAGE, "Invalid email format");
-            response.sendRedirect("/Register.jsp");
+            response.sendRedirect(Page.REGISTRATION);
             return;
         }
         String salt=securityPassword.getSalt();
@@ -76,7 +77,7 @@ public class RegisterServlet extends HttpServlet {
         } else { //On Failure, display a meaningful message to the User.
             log.warn("Cannot register user");
             request.setAttribute(ERR_MESSAGE, "Try again");
-            request.getRequestDispatcher("/ErrorPage.jsp").forward(request, response);
+            request.getRequestDispatcher(Page.ERROR_PAGE).forward(request, response);
         }
     }
 }

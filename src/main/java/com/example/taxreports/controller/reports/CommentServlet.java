@@ -4,6 +4,7 @@ import com.example.taxreports.DAO.InspectorDAO;
 import com.example.taxreports.bean.CommentsBean;
 import com.example.taxreports.bean.ReportBean;
 import com.example.taxreports.util.SendEmail;
+import com.example.taxreports.util.ServletsName;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -14,7 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet("/comments")
+import static com.example.taxreports.util.ServletsName.COMMENTS;
+
+@WebServlet(COMMENTS)
 public class CommentServlet extends HttpServlet {
     private static final Logger log = Logger.getLogger(CommentServlet.class);
     @Override
@@ -41,7 +44,7 @@ public class CommentServlet extends HttpServlet {
                 email.sendMail(ReportBean.STATUS_REJECT,idReport,comment);
                 log.info("reject report id = " + idReport);
             }
-            request.getRequestDispatcher("/reportList").forward(request, response);
+            request.getRequestDispatcher(ServletsName.REPORT_LIST).forward(request, response);
         }
     }
 }

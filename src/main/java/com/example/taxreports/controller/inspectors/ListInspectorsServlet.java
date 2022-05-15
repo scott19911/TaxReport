@@ -1,6 +1,7 @@
 package com.example.taxreports.controller.inspectors;
 
 import com.example.taxreports.DAO.AdminDao;
+import com.example.taxreports.Page;
 import com.example.taxreports.bean.InspectorsBean;
 import com.example.taxreports.bean.UserBean;
 import org.apache.log4j.Logger;
@@ -15,7 +16,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/listIns")
+import static com.example.taxreports.util.ServletsName.LIST_INSP;
+
+@WebServlet(LIST_INSP)
 public class ListInspectorsServlet extends HttpServlet {
     private static final Logger log = Logger.getLogger(ListInspectorsServlet.class);
     @Override
@@ -35,7 +38,7 @@ public class ListInspectorsServlet extends HttpServlet {
         }
 
         req.setAttribute("listIns", listIns);
-        req.getRequestDispatcher("/ListIns.jsp").forward(req, resp);
+        req.getRequestDispatcher(Page.LIST_INSP).forward(req, resp);
     }
 
     @Override
@@ -54,6 +57,6 @@ public class ListInspectorsServlet extends HttpServlet {
         }
 
         req.setAttribute("listIns", listIns);
-        req.getRequestDispatcher("/ListIns.jsp").forward(req, resp);
+        req.getRequestDispatcher(Page.LIST_INSP).forward(req, resp);
     }
 }

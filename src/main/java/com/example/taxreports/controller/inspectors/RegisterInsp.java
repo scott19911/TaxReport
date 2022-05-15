@@ -5,6 +5,7 @@ import com.example.taxreports.DAO.UserDAO;
 import com.example.taxreports.bean.RegisterBean;
 import com.example.taxreports.bean.UserBean;
 import com.example.taxreports.util.SecurityPassword;
+import com.example.taxreports.util.ServletsName;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -15,7 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet("/regIns")
+import static com.example.taxreports.util.ServletsName.REGISTER_INSP;
+
+@WebServlet(REGISTER_INSP)
 public class RegisterInsp extends HttpServlet {
     private static final Logger log = Logger.getLogger(RegisterInsp.class);
     @Override
@@ -26,6 +29,7 @@ public class RegisterInsp extends HttpServlet {
         String password = req.getParameter("password");
         String fName = req.getParameter("fName");
         String lName = req.getParameter("lName");
+        String email = req.getParameter("email");
         HttpSession session = req.getSession();
         RegisterBean registerBean = new RegisterBean();
         UserDAO userDAO = new UserDAO();
@@ -35,6 +39,7 @@ public class RegisterInsp extends HttpServlet {
         if(user.getRole().equals("adm")){
             registerBean.setSalt(salt);
             registerBean.setLogin(login);
+            registerBean.setEmail(email);
             registerBean.setPassword(securityPassword.getHashPassword(password + salt));
             registerBean.setRole(role);
             int userId = userDAO.registerUser(registerBean);
@@ -42,6 +47,6 @@ public class RegisterInsp extends HttpServlet {
             adminDao.createInspector(userId,fName,lName);
             log.info("Register new inspector id = " + userId);
         }
-        req.getRequestDispatcher("/listIns").forward(req, resp);
+        req.getRequestDispatcher(ServletsName.LIST_INSP).forward(req, resp);
     }
 }

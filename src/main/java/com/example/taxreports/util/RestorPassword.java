@@ -1,6 +1,7 @@
 package com.example.taxreports.util;
 
 import com.example.taxreports.DAO.UserDAO;
+import com.example.taxreports.Page;
 import com.example.taxreports.TableColums;
 import com.example.taxreports.Validates;
 import com.example.taxreports.bean.UserBean;
@@ -36,7 +37,7 @@ public class RestorPassword extends HttpServlet {
             userBean.setRole(UserDAO.getUserRoleByID(id));
             session.setAttribute(USER,userBean);
             req.getSession().setAttribute("javax.servlet.jsp.jstl.fmt.locale.session",userDAO.getLocaleById(id));
-            req.getRequestDispatcher("/changePass.jsp").forward(req, resp);
+            req.getRequestDispatcher(Page.CHANGE_PASSWORD).forward(req, resp);
         } else {
             req.setAttribute("errMessage", "The link has expired or has already been used.");
             req.getRequestDispatcher("/ErrorHandler").forward(req, resp);

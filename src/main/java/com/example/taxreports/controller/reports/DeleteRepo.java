@@ -1,6 +1,7 @@
 package com.example.taxreports.controller.reports;
 
 import com.example.taxreports.DAO.ReportsDAO;
+import com.example.taxreports.util.ServletsName;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -10,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/deleteRepo")
+import static com.example.taxreports.util.ServletsName.DELETE_REPORT;
+
+@WebServlet(DELETE_REPORT)
 public class DeleteRepo  extends HttpServlet {
     private static final Logger log = Logger.getLogger(DeleteRepo.class);
     @Override
@@ -24,6 +27,6 @@ public class DeleteRepo  extends HttpServlet {
             log.error("Cannot delete file = " + path, e);
         }
         log.info("Deleted report id = " + id + " and file = " + path);
-        response.sendRedirect(request.getContextPath() + "/reportList");
+        response.sendRedirect(request.getContextPath() + ServletsName.REPORT_LIST);
     }
 }

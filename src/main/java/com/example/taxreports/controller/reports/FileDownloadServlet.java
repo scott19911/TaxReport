@@ -15,8 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 
+import static com.example.taxreports.util.ServletsName.DOWNLOAD;
+
 @MultipartConfig
-@WebServlet("/download")
+@WebServlet(DOWNLOAD)
 public class FileDownloadServlet extends HttpServlet {
     private static final Logger log = Logger.getLogger(FileDownloadServlet.class);
 

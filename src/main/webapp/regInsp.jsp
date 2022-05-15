@@ -59,7 +59,9 @@
             <div>
                 <input type="text" placeholder="<fmt:message key="lName"/>" required="" name="lName" />
             </div>
-
+            <div>
+                <input type="text" placeholder="<fmt:message key="email"/>"  name="email" />
+            </div>
             <div><input type="text" placeholder="<fmt:message key="login"/>" required="" name="login" /></div>
             <div><input type="password" placeholder="<fmt:message key="newPassword"/>" required="" name="password" /> </div>
             <div><input type="password" placeholder="<fmt:message key="confirmPassword"/>" required="" name="conpassword" /> </div>

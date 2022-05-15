@@ -3,6 +3,7 @@ package com.example.taxreports.controller.individual;
 
 import com.example.taxreports.DAO.IndividualDAO;
 import com.example.taxreports.DAO.UserDAO;
+import com.example.taxreports.Page;
 import com.example.taxreports.bean.IndividualBean;
 import com.example.taxreports.bean.UserBean;
 import org.apache.log4j.Logger;
@@ -15,7 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet("/accountInd")
+import static com.example.taxreports.util.ServletsName.IND_INFO;
+
+@WebServlet(IND_INFO)
 public class UserInfIndi extends HttpServlet {
     private static final Logger log = Logger.getLogger(UserInfIndi.class);
     @Override
@@ -33,6 +36,6 @@ public class UserInfIndi extends HttpServlet {
        IndividualBean infInd = IndividualDAO.userInfo(userId);
         req.setAttribute("email", userDAO.getEmailById(userId));
        req.setAttribute("infInd", infInd);
-       req.getRequestDispatcher("/indAccount.jsp").forward(req, resp);
+       req.getRequestDispatcher(Page.IND_INFO).forward(req, resp);
     }
 }

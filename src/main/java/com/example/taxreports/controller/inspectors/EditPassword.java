@@ -2,6 +2,7 @@ package com.example.taxreports.controller.inspectors;
 
 import com.example.taxreports.DAO.UserDAO;
 import com.example.taxreports.bean.UserBean;
+import com.example.taxreports.util.ServletsName;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -12,7 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet("/editPassword")
+import static com.example.taxreports.util.ServletsName.EDIT_PASSWORD;
+
+@WebServlet(EDIT_PASSWORD)
 public class EditPassword extends HttpServlet {
     private static final Logger log = Logger.getLogger(EditPassword.class);
     @Override
@@ -22,6 +25,6 @@ public class EditPassword extends HttpServlet {
         UserBean user = (UserBean) session.getAttribute("user");
         log.info("edit password " + user.toString());
         UserDAO.updatePassword(user.getId(), newPassword);
-        req.getRequestDispatcher("/reportList").forward(req, resp);
+        req.getRequestDispatcher(ServletsName.REPORT_LIST).forward(req, resp);
     }
 }

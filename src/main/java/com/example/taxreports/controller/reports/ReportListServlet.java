@@ -1,8 +1,10 @@
 package com.example.taxreports.controller.reports;
 
 import com.example.taxreports.DAO.ReportsDAO;
+import com.example.taxreports.Page;
 import com.example.taxreports.bean.ReportBean;
 import com.example.taxreports.bean.UserBean;
+import com.example.taxreports.util.ServletsName;
 import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
@@ -15,8 +17,10 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
+import static com.example.taxreports.util.ServletsName.REPORT_LIST;
 
-@WebServlet("/reportList")
+
+@WebServlet(REPORT_LIST)
 public class ReportListServlet extends HttpServlet {
     private static final Logger log = Logger.getLogger(ReportListServlet.class);
     @Override
@@ -40,11 +44,7 @@ public class ReportListServlet extends HttpServlet {
         log.info("show report for user " + user);
         request.setAttribute("arc", isArch);
         request.setAttribute("list", list);
-        if(request.getParameter("works") != null){
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/inspections.jsp");
-            dispatcher.forward(request, response);
-        }
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/reportList.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher(Page.REPORT_LIST);
         dispatcher.forward(request, response);
 
     }
@@ -52,7 +52,7 @@ public class ReportListServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.sendRedirect("/reportList");
+        response.sendRedirect(REPORT_LIST);
     }
 
 }

@@ -1,6 +1,7 @@
 package com.example.taxreports.controller.reports;
 
 import com.example.taxreports.DAO.ReportsDAO;
+import com.example.taxreports.Page;
 import com.example.taxreports.bean.UserBean;
 import com.example.taxreports.util.S3Util;
 import org.apache.log4j.Logger;
@@ -15,7 +16,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@WebServlet("/UploadReport")
+import static com.example.taxreports.util.ServletsName.UPLOAD_REPORT;
+
+@WebServlet(UPLOAD_REPORT)
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
         maxFileSize = 1024 * 1024 * 5, // 5MB
         maxRequestSize = 1024 * 1024 * 20) // 20MB
@@ -32,7 +35,7 @@ public class ReportServlet extends HttpServlet {
             changeId = 0;
         }
 
-        RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/UploadReport.jsp");
+        RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher(Page.UPLOAD_REPORT);
         dispatcher.forward(request, response);
     }
 
@@ -70,7 +73,7 @@ public class ReportServlet extends HttpServlet {
         } catch (Exception ex) {
             log.error("Cannot load file " + ex);
             request.setAttribute("errorMessage", "Error: " + fileDir + ex);
-            RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/UploadReport.jsp");
+            RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher(Page.UPLOAD_REPORT);
             dispatcher.forward(request, response);
         }
 

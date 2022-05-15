@@ -1,9 +1,11 @@
 package com.example.taxreports.controller.authorization;
 import com.example.taxreports.DAO.UserDAO;
+import com.example.taxreports.Page;
 import com.example.taxreports.bean.RegisterBean;
 import com.example.taxreports.bean.UserBean;
 import com.example.taxreports.util.SecurityConfig;
 import com.example.taxreports.util.SecurityPassword;
+import com.example.taxreports.util.ServletsName;
 import org.apache.log4j.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,7 +22,7 @@ import static com.example.taxreports.TableColums.*;
  */
 
 
-@WebServlet("/login")
+@WebServlet(ServletsName.LOGIN)
 public class LoginServlet extends HttpServlet {
     private static final Logger log = Logger.getLogger(LoginServlet.class);
 
@@ -68,9 +70,9 @@ public class LoginServlet extends HttpServlet {
             request.getSession().setAttribute("javax.servlet.jsp.jstl.fmt.locale.session", userDAO.getLocaleById(userValidate.getId()));
             log.info("User successes log in id = " + userValidate.getId() + " and hes role = " + userValidate.getRole());
             if (userValidate.getRole().equals(SecurityConfig.ROLE_ADMIN)) {
-                request.getRequestDispatcher("/listIns").forward(request, response);
+                request.getRequestDispatcher(ServletsName.LIST_INSP).forward(request, response);
             } else {
-                request.getRequestDispatcher("/reportList").forward(request, response);
+                request.getRequestDispatcher(ServletsName.REPORT_LIST).forward(request, response);
             }
         }
         else
@@ -80,7 +82,7 @@ public class LoginServlet extends HttpServlet {
          */
             log.info("Try log in user = " + login);
             request.setAttribute("errMessage", "Wrong login or password");
-            request.getRequestDispatcher("/Login.jsp").forward(request, response);//forwarding the request
+            request.getRequestDispatcher(Page.LOGIN).forward(request, response);//forwarding the request
         }
     }
 }

@@ -2,8 +2,10 @@ package com.example.taxreports.controller.individual;
 
 import com.example.taxreports.DAO.IndividualDAO;
 import com.example.taxreports.DAO.UserDAO;
+import com.example.taxreports.Page;
 import com.example.taxreports.Validates;
 import com.example.taxreports.bean.UserBean;
+import com.example.taxreports.util.ServletsName;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -16,9 +18,12 @@ import java.io.IOException;
 
 import static com.example.taxreports.TableColums.EMAIL;
 
-@WebServlet("/insertInd")
+@WebServlet(ServletsName.EDIT_IND)
 public class InsertInd extends HttpServlet {
     private static final Logger log = Logger.getLogger(InsertInd.class);
+    private int minPasswordLength = 5;
+    public static final int TIN_LENGTH = 10;
+
 
     String act;
     private static final String ACTION_INSERT= "insert";
@@ -30,7 +35,7 @@ public class InsertInd extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
          act = req.getParameter("action");
          req.setAttribute("act", act);
-         req.getRequestDispatcher("/insertIndivid.jsp").forward(req, resp);
+         req.getRequestDispatcher(Page.EDIT_IND).forward(req, resp);
 
     }
 
@@ -47,8 +52,7 @@ public class InsertInd extends HttpServlet {
            String sName=req.getParameter("sName");
            String lName=req.getParameter("lName");
            String tin= req.getParameter("tin");
-           String email = req.getParameter(EMAIL);
-           userDAO.updateEmail(userBean.getId(), email);
+
            individualDAO.insertInd(userBean.getId(), fName,sName,lName,tin);
            log.info("Insert info indi user id = " + userBean.getId());
        }
@@ -60,24 +64,11 @@ public class InsertInd extends HttpServlet {
             String password = req.getParameter("password");
             String email = req.getParameter(EMAIL);
             String loacale = userBean.getLocale();
-            if(IndividualDAO.userInfo(userBean.getId()) == null){
-                if (fName !=null && lName != null && tin != null){
-                    if (validates.validName(fName, loacale) && validates.validName(lName,loacale)
-                            && (validates.validName(sName,loacale) || sName == null)){
-                    individualDAO.insertInd(userBean.getId(), fName,sName,lName,tin);
-                    } else {
-                        req.setAttribute("errMessage", "Check your names");
-                        req.getRequestDispatcher("/ErrorHandler").forward(req,resp);
-                        return;
-                    }
-                } else {
-                    individualDAO.insertInd(userBean.getId(), EMPTY,EMPTY,EMPTY,EMPTY);
-                }
-            }
+
             if (fName != null && !fName.isEmpty()){
                 if(!validates.validName(fName,loacale)){
                     req.setAttribute("errMessage", "Check your First Name");
-                    req.getRequestDispatcher("/ErrorHandler").forward(req,resp);
+                    req.getRequestDispatcher(ServletsName.ERROR).forward(req,resp);
                     return;
                 }
                 individualDAO.updateFnameInd(userBean.getId(), fName);
@@ -85,7 +76,7 @@ public class InsertInd extends HttpServlet {
             if (sName != null && !sName.isEmpty()){
                 if(!validates.validName(sName,loacale)){
                     req.setAttribute("errMessage", "Check your SecondName");
-                    req.getRequestDispatcher("/ErrorHandler").forward(req,resp);
+                    req.getRequestDispatcher(ServletsName.ERROR).forward(req,resp);
                     return;
                 }
                 individualDAO.updateSnameInd(userBean.getId(), sName);
@@ -93,7 +84,7 @@ public class InsertInd extends HttpServlet {
             if (lName != null && !lName.isEmpty()){
                 if(validates.validName(lName,loacale)){
                     req.setAttribute("errMessage", "Check your Last Name");
-                    req.getRequestDispatcher("/ErrorHandler").forward(req,resp);
+                    req.getRequestDispatcher(ServletsName.ERROR).forward(req,resp);
                     return;
                 }
                 individualDAO.updateLnameInd(userBean.getId(), lName);
@@ -101,19 +92,19 @@ public class InsertInd extends HttpServlet {
             if (email != null && !email.isEmpty()){
                 if(!validates.validEmail(email)){
                     req.setAttribute("errMessage", "Check your email");
-                    req.getRequestDispatcher("/ErrorHandler").forward(req,resp);
+                    req.getRequestDispatcher(ServletsName.ERROR).forward(req,resp);
                     return;
                 }
                 userDAO.updateEmail(userBean.getId(), email);
             }
-            if (password != null && password.length() > 5){
+            if (password != null && password.length() > minPasswordLength){
                 UserDAO.updatePassword(userBean.getId(), password);
             }
-            if (tin != null && tin.length() == 10){
+            if (tin != null && tin.length() == TIN_LENGTH){
                 individualDAO.updateTinInd(userBean.getId(), tin);
             }
         }
         log.info("Edit info indi user id = " + userBean.getId());
-        resp.sendRedirect("/accountInd");
+        resp.sendRedirect(ServletsName.IND_INFO);
     }
 }

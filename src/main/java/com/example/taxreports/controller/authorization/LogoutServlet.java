@@ -1,5 +1,6 @@
 package com.example.taxreports.controller.authorization;
 
+import com.example.taxreports.Page;
 import com.example.taxreports.bean.UserBean;
 import org.apache.log4j.Logger;
 
@@ -11,7 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-@WebServlet("/logOff")
+
+import static com.example.taxreports.util.ServletsName.LOG_OFF;
+
+@WebServlet(LOG_OFF)
 public class LogoutServlet extends HttpServlet
 {
     private static final Logger log = Logger.getLogger(LogoutServlet.class);
@@ -26,7 +30,7 @@ public class LogoutServlet extends HttpServlet
             session.invalidate();
             log.info("User logg off id = " + user.getId());
             request.setAttribute("errMessage", "You have logged out successfully");
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/Login.jsp");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher(Page.LOGIN);
             requestDispatcher.forward(request, response);
 
         }

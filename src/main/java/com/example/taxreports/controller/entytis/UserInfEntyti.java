@@ -2,9 +2,11 @@ package com.example.taxreports.controller.entytis;
 
 import com.example.taxreports.DAO.EntytiDAO;
 import com.example.taxreports.DAO.UserDAO;
+import com.example.taxreports.Page;
 import com.example.taxreports.TableColums;
 import com.example.taxreports.bean.EntytiBean;
 import com.example.taxreports.bean.UserBean;
+import com.example.taxreports.util.ServletsName;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -15,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet("/accountEntyti")
+@WebServlet(ServletsName.ENTYTI_INFO)
 public class UserInfEntyti extends HttpServlet {
     private static final Logger log = Logger.getLogger(UserInfEntyti.class);
     @Override
@@ -33,7 +35,7 @@ public class UserInfEntyti extends HttpServlet {
         EntytiBean infEntyti = EntytiDAO.userInfo(userId);
         req.setAttribute("infEntyti", infEntyti);
         req.setAttribute("email", userDAO.getEmailById(userId));
-        req.getRequestDispatcher("/entytiAccount.jsp").forward(req, resp);
+        req.getRequestDispatcher(Page.ENTYTI_INFO).forward(req, resp);
     }
 
 

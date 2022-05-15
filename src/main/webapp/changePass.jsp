@@ -27,7 +27,6 @@
         {
             var password = document.form.password.value;
             var conpassword= document.form.conpassword.value;
-            var okpo= document.form.okpo.value;
             if( password.length > 0) {
                 if( password.length < 6) {
                     alert("Password must be at least 6 characters long.");
@@ -36,10 +35,6 @@
                     alert("Confirm Password should match with the Password");
                     return false;
                 }
-            }
-            if ( okpo.length !== 0 && okpo.length != 12){
-                alert("OKPO must be 12 characters long.");
-                return false;
             }
         }
         $(".ss").on('input', function(e){
@@ -71,7 +66,7 @@
 
 <div class="container">
     <section id="content">
-        <form name="form" action="/editPassword"" method="post"  onsubmit="return validate()">
+        <form name="form" action="/editPassword" method="post"  onsubmit="return validate()">
                 <div><input type="password" placeholder="<fmt:message key="newPassword"/>" name="password" /> </div>
                 <div><input type="password" placeholder="<fmt:message key="confirmPassword"/>" name="conpassword" /> </div>
                 </tr>
