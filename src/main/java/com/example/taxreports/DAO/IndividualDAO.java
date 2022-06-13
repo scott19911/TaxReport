@@ -28,7 +28,7 @@ public class IndividualDAO {
             stm.executeUpdate();
         } catch (SQLException e) {
             log.error(e);
-            throw new RuntimeException("Sorry, cannot register such user");
+            throw new RuntimeException("Sorry, cannot register such users");
         }
     }
 
